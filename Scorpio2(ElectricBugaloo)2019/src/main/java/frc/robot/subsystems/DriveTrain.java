@@ -20,7 +20,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 public class DriveTrain extends Subsystem {
   public WPI_TalonSRX left0, left1, left2, right0, right1, right2;
   public SpeedControllerGroup left, right;
-  DifferentialDrive drive;
+  public DifferentialDrive drive;
   public double value, last_error;
 
   public DriveTrain(){
