@@ -13,10 +13,12 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.LimeLight;
+import frc.robot.subsystems.Winch;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -30,6 +32,8 @@ public class Robot extends TimedRobot {
   public static LimeLight limelight;
   public static DriveTrain driveTrain;
   public static Elevator vator;
+  public static Winch winch;
+  public static Arm arm;
   public static OI m_oi;
 
   Command m_autonomousCommand;
@@ -41,11 +45,17 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    limelight = new LimeLight();
+    driveTrain = new DriveTrain();
+    vator = new Elevator();
+    winch = new Winch();
+    arm = new Arm();
     m_oi = new OI();
     m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
   }
+  
 
   /**
    * This function is called every robot packet, no matter the mode. Use
@@ -57,9 +67,6 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    limelight = new LimeLight();
-    driveTrain = new DriveTrain();
-    vator = new Elevator();
   }
 
   /**
