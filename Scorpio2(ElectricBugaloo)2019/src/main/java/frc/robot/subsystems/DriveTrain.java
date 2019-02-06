@@ -21,7 +21,7 @@ public class DriveTrain extends Subsystem {
   public WPI_TalonSRX left0, left1, left2, right0, right1, right2;
   public SpeedControllerGroup left, right;
   public DifferentialDrive drive;
-  public double value, last_error;
+  double value, last_error;
 
   public DriveTrain(){
     left0 = new WPI_TalonSRX(0);
