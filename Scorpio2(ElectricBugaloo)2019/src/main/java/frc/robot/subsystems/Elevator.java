@@ -26,7 +26,7 @@ public CANEncoder liftencoder;
   public Elevator(){
 
     lift = new CANSparkMax(7, MotorType.kBrushless);
-
+    //the gear ratio is 7:1
     liftencoder = new CANEncoder(lift);
 
 
@@ -34,8 +34,8 @@ public CANEncoder liftencoder;
 
 
   /**
- * This will be a much easier way to call PID loops using the drive
- * This method will likely be found on other subsystems soon enough
+ * This is a manual pid loop where you can set the P and D values
+ * 
  * @param kP (the constant for the proportional part of PID)
  * @param kD (the constant for the derivative part of PID)
  * @param error (the source of error for the PID loop)
