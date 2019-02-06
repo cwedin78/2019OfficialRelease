@@ -25,7 +25,7 @@ public CANEncoder liftencoder;
 
   public Elevator(){
 
-    lift = new CANSparkMax(7, MotorType.kBrushless);
+    lift = new CANSparkMax(8, MotorType.kBrushless);
     //the gear ratio is 7:1
     //with the shaft average radius (it's a hex), it should be roughly .75 inches per rotation of the NEO
     liftencoder = new CANEncoder(lift);
