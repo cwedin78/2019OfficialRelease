@@ -29,7 +29,6 @@ public class Robot extends TimedRobot {
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static LimeLight limelight;
   public static DriveTrain driveTrain;
-  public static Elevator vator;
   public static OI m_oi;
 
   Command m_autonomousCommand;
@@ -41,6 +40,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    limelight = new LimeLight();
+    driveTrain = new DriveTrain();
     m_oi = new OI();
     m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
@@ -57,9 +58,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    limelight = new LimeLight();
-    driveTrain = new DriveTrain();
-    vator = new Elevator();
+ 
   }
 
   /**
