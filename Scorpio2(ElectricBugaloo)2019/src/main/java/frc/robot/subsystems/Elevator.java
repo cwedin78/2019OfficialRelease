@@ -7,10 +7,12 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 
@@ -20,9 +22,9 @@ public double value, last_error;
 
 public CANSparkMax lift;
 
-
 public CANEncoder liftencoder;
 
+  
   public Elevator(){
 
     lift = new CANSparkMax(8, MotorType.kBrushless);
