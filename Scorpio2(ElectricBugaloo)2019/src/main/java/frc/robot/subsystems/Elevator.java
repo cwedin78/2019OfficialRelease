@@ -7,19 +7,26 @@
 
 package frc.robot.subsystems;
 
+import com.revrobotics.CANEncoder;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 
-
-/**
- * Add your docs here.
- */
 public class Elevator extends Subsystem {
 
 public CANSparkMax lift;
 
+public CANEncoder liftencoder;
+
   public Elevator(){
 
+    lift = new CANSparkMax(7, MotorType.kBrushless);
+
+    liftencoder = new CANEncoder(lift);
+
+    
   }
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
