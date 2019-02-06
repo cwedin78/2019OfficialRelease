@@ -40,7 +40,14 @@ public class DriveTrain extends Subsystem {
     drive = new DifferentialDrive(left, right);
 
   }
-
+/**
+ * This will be a much easier way to call PID loops using the drive
+ * This method will likely be found on other subsystems soon enough
+ * @param kP (the constant for the proportional part of PID)
+ * @param kD (the constant for the derivative part of PID)
+ * @param error (the source of error for the PID loop)
+ * 
+ */
 
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
@@ -63,12 +70,27 @@ public class DriveTrain extends Subsystem {
     }
   }
 
-
+/**
+ * This will bring the drive method one level higher so that it saves time for future uses of a command
+ * @param forward
+ * forward dictates how far forward or backwards your robot should be going by motor percantage
+ * @param twist
+ * Same as above, but spin speed
+ */
   
 public void inputdrive(double forward, double twist){
   drive.tankDrive(forward, twist);
 }
-
+/**
+ * configures a controller input throught the X,Y, or Z axes, and combines them with the throttle.
+ * This creates a precise control with the use of deadzones and a precision scale.
+ * @param deadzone (make it so a simple touch doesn't do anything)
+ * @param minimumscale (the slowest you want things to go)
+ * @param maximumscale (the fastest)
+ * @param controllertype (which controller are you using)
+ * @param controllerinput (It's either "X", "Y", or "Z" for the three axes on a controller. Use caps, and put quotes) If X, Y, or Z are not chosen, it is defaulted to Z
+ * @param inverted (whether or not you need to flip the controller input)
+ */
 
 
 public double CalculateControllerValue(double deadzone, double minimumscale, double maximumscale, Joystick controllertype, boolean inverted, String controllerinput ){
