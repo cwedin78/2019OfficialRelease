@@ -10,43 +10,23 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-
-public class ApproachLevelThree extends Command {
-
-  public double error, kp, kd, setpoint;
-  public ApproachLevelThree() {
+public class OperatorLift extends Command {
+  public OperatorLift() {
     requires(Robot.lift);
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
 
-
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-
-    kp = .05;
-    kd = .03;
-
-    setpoint = 74.67; //closest estimate as of now
-
-    error = setpoint - Robot.lift.liftencoder.getPosition();
-
 
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-
-    if (Robot.lift.liftencoder.getPosition() <= 75){
-    Robot.lift.lift.set(Robot.lift.PIDSpeed(kp, kd, error));
-    }
-
-    else {
-      Robot.lift.lift.set(0);
-    }
-    
+    Robot.lift.lift.set(Robot.m_oi.operator.getThrottle());
   }
 
   // Make this return true when this Command no longer needs to run execute()
