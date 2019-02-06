@@ -10,14 +10,15 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class CenterTarget extends Command {
-  public double kP, kD, forward, correction; 
-  public CenterTarget() {
+public class CargoCargo extends Command {
+    
+    public double kP, kD;
+    public int error;
+  public CargoCargo() {
+    
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    //requires(Robot.vator);
-    requires(Robot.driveTrain);
-    requires(Robot.limelight);
+    requires(Robot.arm);
   }
 
   // Called just before this Command runs the first time
@@ -25,15 +26,13 @@ public class CenterTarget extends Command {
   protected void initialize() {
     kP = 0.1;
     kD = 0.04;
+    error = 126 - Robot.arm.armEncoder.get();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    forward = Robot.driveTrain.CalculateControllerValue(0.3, .25, .75, Robot.m_oi.driver, false, "Y");
-
-    correction = Robot.driveTrain.PIDSpeed(kP, kD, Robot.limelight.tx.getDouble(0.0 * -1));
-    Robot.driveTrain.inputdrive(forward, correction);
+    Robot.arm.armMotor.set(Robot.arm.PIDSpeed(kP, kD, error));
   }
 
   // Make this return true when this Command no longer needs to run execute()
