@@ -27,6 +27,7 @@ public CANEncoder liftencoder;
 
     lift = new CANSparkMax(7, MotorType.kBrushless);
     //the gear ratio is 7:1
+    //with the shaft average radius (it's a hex), it should be roughly .75 inches per rotation of the NEO
     liftencoder = new CANEncoder(lift);
 
 
@@ -35,9 +36,8 @@ public CANEncoder liftencoder;
 
   /**
  * This is a manual pid loop where you can set the P and D values
- * 
- * @param kP (the constant for the proportional part of PID)
- * @param kD (the constant for the derivative part of PID)
+ * @param kP (the coefficients for the proportional part of PID)
+ * @param kD (the coefficients for the derivative part of PID)
  * @param error (the source of error for the PID loop)
  * 
  */
