@@ -30,9 +30,8 @@ import frc.robot.subsystems.LimeLight;
 public class Robot extends TimedRobot {
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static LimeLight limelight;
-  public static DriveTrain driveTrain;
+  public static DriveTrain drivetrain;
   public static Arm arm;
-  public static CenterTarget centerTarget;
   public static OI m_oi;
 
   Command m_autonomousCommand;
@@ -44,6 +43,9 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    arm = new Arm();
+    limelight = new LimeLight();
+    drivetrain = new DriveTrain();
     m_oi = new OI();
     m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
@@ -60,10 +62,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    limelight = new LimeLight();
-    driveTrain = new DriveTrain();
-    centerTarget = new CenterTarget();
-    arm = new Arm();
+  
   }
 
   /**

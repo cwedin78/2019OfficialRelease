@@ -14,7 +14,7 @@ public class DriverInput extends Command {
   public DriverInput() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.driveTrain);
+    requires(Robot.drivetrain);
   }
 
   // Called just before this Command runs the first time
@@ -28,9 +28,9 @@ public class DriverInput extends Command {
     double forward;
     double twist;
 
-    forward = Robot.driveTrain.CalculateControllerValue(.3, .25, .75, Robot.m_oi.driver, false, "y");
-    twist = Robot.driveTrain.CalculateControllerValue(.3, .25, .75, Robot.m_oi.operator, false, "Z");
-    Robot.driveTrain.inputdrive(forward, twist);
+    forward = Robot.drivetrain.CalculateControllerValue(.3, .25, .75, Robot.m_oi.driver, false, "y");
+    twist = Robot.drivetrain.CalculateControllerValue(.3, .25, .75, Robot.m_oi.operator, false, "Z");
+    Robot.drivetrain.inputdrive(forward, twist);
   }
 
   // Make this return true when this Command no longer needs to run execute()

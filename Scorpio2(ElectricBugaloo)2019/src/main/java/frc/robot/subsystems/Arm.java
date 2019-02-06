@@ -19,8 +19,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Arm extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  public WPI_TalonSRX armMotor;
-  public WPI_TalonSRX intake;
+  public WPI_TalonSRX armMotor, intake;
   public Encoder armEncoder;
 
   public double value, last_error;
