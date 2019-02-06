@@ -29,6 +29,8 @@ public class Arm extends Subsystem {
   public Arm() {
   armMotor = new WPI_TalonSRX(6);
   intake = new WPI_TalonSRX(7);
+
+  //5508 ticks per revolution
   armEncoder = new Encoder(0, 1, false);
 
  
