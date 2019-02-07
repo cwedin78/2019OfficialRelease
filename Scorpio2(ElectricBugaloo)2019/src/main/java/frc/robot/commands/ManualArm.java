@@ -25,7 +25,7 @@ public class ManualArm extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.arm.CalculateControllerValue(.3, .25, .75, Robot.m_oi.operator, true, "Y");
+    Robot.arm.CalculateControllerValue(.3, .1, 1, Robot.m_oi.operator, true, "Y");
   }
 
   // Make this return true when this Command no longer needs to run execute()
