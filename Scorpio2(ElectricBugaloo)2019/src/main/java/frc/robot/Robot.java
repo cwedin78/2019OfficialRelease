@@ -29,11 +29,11 @@ import frc.robot.subsystems.LimeLight;
  * project.
  */
 public class Robot extends TimedRobot {
-  public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
-  public static LimeLight limelight;
-  public static DriveTrain drivetrain;
-  public static Arm arm;
-  public static OI m_oi;
+public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
+public static LimeLight limelight;
+public static DriveTrain drivetrain;
+public static Arm arm;
+public static OI m_oi;
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();

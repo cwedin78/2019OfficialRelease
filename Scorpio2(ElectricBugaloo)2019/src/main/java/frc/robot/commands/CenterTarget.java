@@ -11,13 +11,13 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class CenterTarget extends Command {
-  public double kP, kD, forward, correction; 
-  public CenterTarget() {
+public double kP, kD, forward, correction; 
+public CenterTarget() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     //requires(Robot.vator);
-    requires(Robot.drivetrain);
-    requires(Robot.limelight);
+  requires(Robot.drivetrain);
+  requires(Robot.limelight);
   }
 
   // Called just before this Command runs the first time

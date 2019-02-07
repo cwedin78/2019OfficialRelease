@@ -25,12 +25,23 @@ public class RocketCargo extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+
+    
+    if(Robot.m_oi.operator.getRawButton(3)){
+      Robot.arm.intake.set(-1);
+    }
+    else if (Robot.m_oi.operator.getRawButton(4)){
+      Robot.arm.intake.set(1);
+    }
+    else{
+      Robot.arm.intake.set(0);
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return Math.abs(Robot.m_oi.operator.getY()) > .3;
   }
 
   // Called once after isFinished returns true

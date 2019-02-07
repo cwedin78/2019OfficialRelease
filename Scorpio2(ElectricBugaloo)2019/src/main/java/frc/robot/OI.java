@@ -13,22 +13,23 @@ import frc.robot.commands.CargoCargo;
 import frc.robot.commands.ManualArm;
 import frc.robot.commands.RocketCargo;
 
+
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
 
-  public Joystick driver, operator;
+public Joystick driver, operator;
 
 
-  public JoystickButton d1, d2, d3, d4, d5, d6, d7, d8, d9, d10, d11, d12, o1, o2, o3, o4, o5, o6, o7, o8, o9, o10, o11, o12;
+public JoystickButton d1, d2, d3, d4, d5, d6, d7, d8, d9, d10, d11, d12, o1, o2, o3, o4, o5, o6, o7, o8, o9, o10, o11, o12;
 
 
-  public OI(){
+public OI(){
 
-    driver = new Joystick(0);
-    operator = new Joystick(1);
+  driver = new Joystick(0);
+  operator = new Joystick(1);
 
     d1 = new JoystickButton(driver, 1);
     d2 = new JoystickButton(driver, 2);
@@ -57,8 +58,7 @@ public class OI {
     o11 = new JoystickButton(operator, 11);
     o12 = new JoystickButton(operator, 12);
 
-
-    o3.whenPressed(new CargoCargo());
+    
     o4.whenPressed(new RocketCargo());
     o5.whenPressed(new ManualArm());
 

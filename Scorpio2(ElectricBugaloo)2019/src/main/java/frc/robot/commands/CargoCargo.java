@@ -12,13 +12,13 @@ import frc.robot.Robot;
 
 public class CargoCargo extends Command {
     
-    public double kP, kD;
-    public int error;
-  public CargoCargo() {
+public double kP, kD;
+public int error;
+public CargoCargo() {
     
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.arm);
+  requires(Robot.arm);
   }
 
   // Called just before this Command runs the first time
@@ -32,13 +32,24 @@ public class CargoCargo extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.arm.armMotor.set(Robot.arm.PIDSpeed(kP, kD, error));
+  Robot.arm.armMotor.set(Robot.arm.PIDSpeed(kP, kD, error));
+
+  
+  if(Robot.m_oi.operator.getRawButton(3)){
+    Robot.arm.intake.set(-1);
+  }
+  else if (Robot.m_oi.operator.getRawButton(4)){
+    Robot.arm.intake.set(1);
+  }
+  else{
+    Robot.arm.intake.set(0);
+  }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return Math.abs(Robot.m_oi.operator.getY()) > .3;
   }
 
   // Called once after isFinished returns true
