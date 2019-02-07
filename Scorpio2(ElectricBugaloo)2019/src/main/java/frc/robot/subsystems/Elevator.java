@@ -13,12 +13,14 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.commands.OperatorLift;
 
 
 public class Elevator extends Subsystem {
 
-public double value, last_error;
+public double value, last_error, controlDZ;
 
 public CANSparkMax lift;
 
@@ -32,6 +34,7 @@ public CANEncoder liftencoder;
     //with the shaft average radius (it's a hex), it should be roughly .75 inches per rotation of the NEO
     liftencoder = new CANEncoder(lift);
 
+    controlDZ = 0.3;
 
   }
 
@@ -60,11 +63,41 @@ public double PIDSpeed(double kP, double kD, double error){
  return value;
   }
 }
+/**
+ * Modified from calculatecontrollervalue, this method simply has deadzones for your throttle for more precise control
+ * @param deadzone (make it so a simple touch doesn't do anything)
+ * @param controllertype (which controller are you using)
+ * @param inverted (whether or not you need to flip the controller input)
+ */
+
+
+public double GiveThrottle(double deadzone, Joystick controllertype, boolean inverted){
+  double input;
+  double returnvalue;
+
+input = controllertype.getThrottle();
+  
+if(inverted){
+  input = input * -1;
+}
+
+//DZ
+
+if (Math.abs(input)< deadzone){
+  returnvalue = 0;
+}
+else{
+  returnvalue = Math.signum(input) * ((Math.abs(input) - deadzone) *(1/1 - deadzone));
+}
+return returnvalue;
+}
+
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
   @Override
   public void initDefaultCommand() {
+    setDefaultCommand(new OperatorLift());
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }

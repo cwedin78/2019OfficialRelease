@@ -38,7 +38,7 @@ public class GetToLevel3 extends Command {
   @Override
   protected void execute() {
     
-    if (Robot.lift.liftencoder.getPosition() <= setpoint + 2){
+    if (Robot.lift.liftencoder.getPosition() <= setpoint + 1){
       Robot.lift.lift.set(Robot.lift.PIDSpeed(kp, kd, error));
       }
   
@@ -50,7 +50,7 @@ public class GetToLevel3 extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return Math.abs(Robot.m_oi.operator.getThrottle()) > Robot.lift.controlDZ;
   }
 
   // Called once after isFinished returns true

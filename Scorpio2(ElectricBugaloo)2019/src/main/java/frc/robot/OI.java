@@ -9,7 +9,11 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.ApproachLevelOne;
+import frc.robot.commands.ApproachLevelTwo;
 import frc.robot.commands.CenterTarget;
+import frc.robot.commands.EjectHatch;
+import frc.robot.commands.GetToLevel3;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -55,8 +59,12 @@ public class OI {
     o11 = new JoystickButton(operator, 11);
     o12 = new JoystickButton(operator, 12);
 
-
- d2.whileHeld(new CenterTarget());
+    o1.whenPressed(new EjectHatch());
+    o2.whenPressed(new ApproachLevelOne());
+    o5.whenPressed(new ApproachLevelTwo());
+    o6.whenPressed(new GetToLevel3());
+    
+    d2.whileHeld(new CenterTarget());
 
   }
 
