@@ -27,7 +27,7 @@ public class ApproachLevelTwo extends Command {
     kp = .05;
     kd = .03;
 
-    setpoint = 37.333333333; //closest estimate as of now
+    setpoint = 46.42; //closest estimate as of now
 
     error = setpoint - Robot.lift.liftencoder.getPosition();
 

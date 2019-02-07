@@ -14,16 +14,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.CenterTarget;
 import frc.robot.commands.ExampleCommand;
-<<<<<<< HEAD
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.LimeLight;
-=======
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.HatchRelease;
->>>>>>> 2580faaee398ace618005c30b387a9dff41f67ce
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -34,13 +31,10 @@ import frc.robot.subsystems.HatchRelease;
  */
 public class Robot extends TimedRobot {
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
-<<<<<<< HEAD
   public static LimeLight limelight;
   public static DriveTrain drivetrain;
-=======
   public static Elevator lift;
   public static HatchRelease release;
->>>>>>> 2580faaee398ace618005c30b387a9dff41f67ce
   public static OI m_oi;
 
   Command m_autonomousCommand;
@@ -52,13 +46,10 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-<<<<<<< HEAD
     limelight = new LimeLight();
     drivetrain = new DriveTrain();
-=======
     lift = new Elevator();
     release = new HatchRelease();
->>>>>>> 2580faaee398ace618005c30b387a9dff41f67ce
     m_oi = new OI();
     m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());

@@ -27,7 +27,7 @@ public class GetToLevel3 extends Command {
     kp = .05;
     kd = .03;
 
-    setpoint = 74.67; //closest estimate as of now
+    setpoint = 92.84; //closest estimate as of now
 
     error = setpoint - Robot.lift.liftencoder.getPosition();
 
@@ -38,7 +38,7 @@ public class GetToLevel3 extends Command {
   @Override
   protected void execute() {
     
-    if (Robot.lift.liftencoder.getPosition() <= 75){
+    if (Robot.lift.liftencoder.getPosition() <= setpoint + 2){
       Robot.lift.lift.set(Robot.lift.PIDSpeed(kp, kd, error));
       }
   
