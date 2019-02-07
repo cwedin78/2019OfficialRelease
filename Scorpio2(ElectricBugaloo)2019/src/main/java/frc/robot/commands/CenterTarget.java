@@ -15,7 +15,10 @@ public class CenterTarget extends Command {
   public CenterTarget() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+<<<<<<< HEAD
     //requires(Robot.vator);
+=======
+>>>>>>> c728e4ea98806fcb0be104d9426e043816074e0c
     requires(Robot.driveTrain);
     requires(Robot.limelight);
   }
@@ -30,10 +33,20 @@ public class CenterTarget extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+<<<<<<< HEAD
     forward = Robot.driveTrain.CalculateControllerValue(0.3, .25, .75, Robot.m_oi.driver, false, "Y");
 
     correction = Robot.driveTrain.PIDSpeed(kP, kD, Robot.limelight.tx.getDouble(0.0 * -1));
     Robot.driveTrain.inputdrive(forward, correction);
+=======
+    forward = Robot.driveTrain.CalculateControllerValue(.3, .25, .75, Robot.m_oi.driver, false, "y");
+
+    correction = Robot.driveTrain.PIDSpeed(kP, kD, Robot.limelight.tx.getDouble(0.0 * -1));
+
+    Robot.driveTrain.inputdrive(forward, correction);
+
+    
+>>>>>>> c728e4ea98806fcb0be104d9426e043816074e0c
   }
 
   // Make this return true when this Command no longer needs to run execute()
