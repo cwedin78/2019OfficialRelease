@@ -26,7 +26,7 @@ public CargoCargo() {
   protected void initialize() {
     kP = 0.1;
     kD = 0.04;
-    error = 126 - Robot.arm.armEncoder.get();
+    error = 125 - Robot.arm.armEncoder.get();
   }
 
   // Called repeatedly when this Command is scheduled to run
