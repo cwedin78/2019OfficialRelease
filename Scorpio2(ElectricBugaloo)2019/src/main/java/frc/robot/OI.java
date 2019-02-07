@@ -9,6 +9,9 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.CargoCargo;
+import frc.robot.commands.ManualArm;
+import frc.robot.commands.RocketCargo;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -53,6 +56,11 @@ public class OI {
     o10 = new JoystickButton(operator, 10);
     o11 = new JoystickButton(operator, 11);
     o12 = new JoystickButton(operator, 12);
+
+
+    o3.whenPressed(new CargoCargo());
+    o4.whenPressed(new RocketCargo());
+    o5.whenPressed(new ManualArm());
 
 
   }
