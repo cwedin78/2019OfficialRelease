@@ -7,10 +7,12 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 
@@ -20,13 +22,14 @@ public double value, last_error;
 
 public CANSparkMax lift;
 
-
 public CANEncoder liftencoder;
 
+  
   public Elevator(){
 
-    lift = new CANSparkMax(7, MotorType.kBrushless);
-
+    lift = new CANSparkMax(8, MotorType.kBrushless);
+    //the gear ratio is 7:1
+    //with the shaft average radius (it's a hex), it should be roughly .75 inches per rotation of the NEO
     liftencoder = new CANEncoder(lift);
 
 
@@ -34,10 +37,9 @@ public CANEncoder liftencoder;
 
 
   /**
- * This will be a much easier way to call PID loops using the drive
- * This method will likely be found on other subsystems soon enough
- * @param kP (the constant for the proportional part of PID)
- * @param kD (the constant for the derivative part of PID)
+ * This is a manual pid loop where you can set the P and D values
+ * @param kP (the coefficients for the proportional part of PID)
+ * @param kD (the coefficients for the derivative part of PID)
  * @param error (the source of error for the PID loop)
  * 
  */
