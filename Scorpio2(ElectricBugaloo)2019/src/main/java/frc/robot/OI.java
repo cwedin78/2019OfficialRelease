@@ -14,6 +14,7 @@ import frc.robot.commands.ApproachLevelTwo;
 import frc.robot.commands.CenterTarget;
 import frc.robot.commands.EjectHatch;
 import frc.robot.commands.GetToLevel3;
+import frc.robot.commands.OperatorLift;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -63,6 +64,7 @@ public class OI {
     o2.whenPressed(new ApproachLevelOne());
     o5.whenPressed(new ApproachLevelTwo());
     o6.whenPressed(new GetToLevel3());
+    o7.whenPressed(new OperatorLift());
     
     d2.whileHeld(new CenterTarget());
 

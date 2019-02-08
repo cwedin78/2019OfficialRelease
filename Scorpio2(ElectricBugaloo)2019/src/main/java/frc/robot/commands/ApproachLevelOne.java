@@ -31,7 +31,7 @@ public class ApproachLevelOne extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(error <= 0){
+    if(error > .5 && Robot.lift.PIDSpeed(kp, kd, error) < 0){
       Robot.lift.lift.set(0);
     }
     else {
@@ -42,7 +42,7 @@ public class ApproachLevelOne extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return Math.abs(Robot.m_oi.operator.getThrottle()) > Robot.lift.controlDZ;
+    return false;
   }
 
   // Called once after isFinished returns true
