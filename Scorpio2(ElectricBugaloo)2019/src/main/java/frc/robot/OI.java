@@ -59,8 +59,8 @@ public OI(){
     o12 = new JoystickButton(operator, 12);
 
     
-    o4.whenPressed(new RocketCargo());
-    o5.whenPressed(new ManualArm());
+    o11.whenPressed(new CargoCargo());
+    o12.whenPressed(new RocketCargo());    
 
 
   }
