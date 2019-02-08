@@ -32,10 +32,15 @@ public CargoCargo() {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-  Robot.arm.armMotor.set(Robot.arm.PIDSpeed(kP, kD, error));
+    if(Robot.arm.armMotor.getBusVoltage() > Robot.arm.stallvalue){
+      Robot.arm.spiked.start();
+    }
+    else {
+      Robot.arm.spiked.stop();
+      Robot.arm.spiked.reset();
+    }
 
-  
-  if(Robot.m_oi.operator.getRawButton(3)){
+  if(Robot.m_oi.operator.getRawButton(3) && Robot.arm.spiked.get() > Robot.arm.stalltime){
     Robot.arm.intake.set(-1);
   }
   else if (Robot.m_oi.operator.getRawButton(4)){
@@ -43,7 +48,9 @@ public CargoCargo() {
   }
   else{
     Robot.arm.intake.set(0);
-  }
+  }  
+  Robot.arm.armMotor.set(Robot.arm.PIDSpeed(kP, kD, error));
+
   }
 
   // Make this return true when this Command no longer needs to run execute()

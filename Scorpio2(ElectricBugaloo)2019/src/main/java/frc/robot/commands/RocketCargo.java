@@ -11,7 +11,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class RocketCargo extends Command {
+  public double setpoint, error, kp, kd;
   public RocketCargo() {
+    
     requires(Robot.arm);
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -20,14 +22,28 @@ public class RocketCargo extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+
+    kp = .1;
+    kd = 0.04;
+
+    setpoint = 323;
+    error = setpoint - Robot.arm.armEncoder.get();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    if(Robot.arm.armMotor.getBusVoltage() > Robot.arm.stallvalue){
+      Robot.arm.spiked.start();
+    }
+    else {
+      Robot.arm.spiked.stop();
+      Robot.arm.spiked.reset();
+    }
 
-    
-    if(Robot.m_oi.operator.getRawButton(3)){
+    Robot.arm.armMotor.set(Robot.arm.PIDSpeed(kp, kd, error));
+
+  if(Robot.m_oi.operator.getRawButton(3) && Robot.arm.spiked.get() > Robot.arm.stalltime){
       Robot.arm.intake.set(-1);
     }
     else if (Robot.m_oi.operator.getRawButton(4)){

@@ -7,10 +7,12 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class ManualArm extends Command {
+  public Timer spikedtime;
 public ManualArm() {
   requires(Robot.arm);
     // Use requires() here to declare subsystem dependencies
@@ -20,14 +22,23 @@ public ManualArm() {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+
+    spikedtime = new Timer();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.arm.CalculateControllerValue(.3, .1, 1, Robot.m_oi.operator, true, "Y");
 
-    if(Robot.m_oi.operator.getRawButton(3)){
+    if(Robot.arm.armMotor.getBusVoltage() > Robot.arm.stallvalue){
+      Robot.arm.spiked.start();
+    }
+    else {
+      Robot.arm.spiked.stop();
+      Robot.arm.spiked.reset();
+    }
+
+  if(Robot.m_oi.operator.getRawButton(3) && Robot.arm.spiked.get() > Robot.arm.stalltime){
       Robot.arm.intake.set(-1);
     }
     else if (Robot.m_oi.operator.getRawButton(4)){
@@ -35,7 +46,9 @@ public ManualArm() {
     }
     else{
       Robot.arm.intake.set(0);
-    }
+    }    
+    Robot.arm.armMotor.set(Robot.arm.CalculateControllerValue(.3, .1, 1, Robot.m_oi.operator, true, "Y"));
+
   }
 
   // Make this return true when this Command no longer needs to run execute()

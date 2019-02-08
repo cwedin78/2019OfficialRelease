@@ -12,6 +12,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.commands.ManualArm;
 
@@ -21,16 +22,24 @@ import frc.robot.commands.ManualArm;
 public class Arm extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
+
+  public Timer spiked;
   public WPI_TalonSRX armMotor, intake;
   public Encoder armEncoder;
 
-  public double value, last_error;
+  public double value, last_error, stallvalue, stalltime;
 
 
   public Arm() {
+
   armMotor = new WPI_TalonSRX(6);
   intake = new WPI_TalonSRX(7);
   armEncoder = new Encoder(0, 1, false);
+
+  stallvalue = 12;
+  stalltime = .5;
+
+  spiked = new Timer();
   }
 /**
  * configures a controller input throught the X,Y, or Z axes, and combines them with the throttle.
