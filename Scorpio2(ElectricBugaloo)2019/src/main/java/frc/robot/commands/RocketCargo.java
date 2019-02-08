@@ -52,6 +52,7 @@ public class RocketCargo extends Command {
     else{
       Robot.arm.intake.set(0);
     }
+    
   }
 
   // Make this return true when this Command no longer needs to run execute()
