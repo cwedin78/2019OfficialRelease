@@ -23,7 +23,7 @@ public class Elevator extends Subsystem {
 
 public DigitalInput lowerlimit, upperlimit;
 
-public double value, last_error, controlDZ;
+public double value, last_error, controlDZ, bottom, top;
 
 public CANSparkMax lift;
 
@@ -37,11 +37,12 @@ public CANEncoder liftencoder;
     //with the shaft average radius (it's a hex), it should be roughly .75 inches per rotation of the NEO
     liftencoder = new CANEncoder(lift);
 
-    lowerlimit = new DigitalInput(8);
-    upperlimit = new DigitalInput(9);
+    lowerlimit = new DigitalInput(6);
+    upperlimit = new DigitalInput(7);
     
     controlDZ = 0.3;
-
+    bottom = -0.5;
+    top = 93;
   }
 
 
@@ -103,7 +104,7 @@ return returnvalue;
 
   @Override
   public void initDefaultCommand() {
-    setDefaultCommand(new OperatorLift());
+
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }

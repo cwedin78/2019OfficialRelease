@@ -12,7 +12,7 @@ import frc.robot.Robot;
 
 public class OperatorLift extends Command {
   public OperatorLift() {
-    
+
     requires(Robot.lift);
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -27,7 +27,26 @@ public class OperatorLift extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.lift.lift.set(Robot.lift.GiveThrottle(Robot.lift.controlDZ, Robot.m_oi.operator, false));
+    double speed = Robot.lift.GiveThrottle(0.3, Robot.m_oi.operator, false);
+    
+    if(speed > 0){
+      if (Robot.lift.liftencoder.getPosition() > Robot.lift.top || Robot.lift.upperlimit.get()){
+      Robot.lift.lift.set(0);
+      }
+      else {
+        Robot.lift.lift.set(speed);
+      }
+    }
+    else {
+      if(Robot.lift.liftencoder.getPosition() < Robot.lift.bottom || Robot.lift.lowerlimit.get()){
+        Robot.lift.lift.set(0);
+      }
+      else {
+        Robot.lift.lift.set(speed);
+      }
+    }
+
+
   }
 
   // Make this return true when this Command no longer needs to run execute()

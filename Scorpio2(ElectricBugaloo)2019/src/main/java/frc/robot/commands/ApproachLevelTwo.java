@@ -38,9 +38,24 @@ public class ApproachLevelTwo extends Command {
   @Override
   protected void execute() {
 
-    Robot.lift.lift.set(Robot.lift.PIDSpeed(kp, kd, error));
-
-
+    double speed = Robot.lift.PIDSpeed(kp, kd, error);
+  
+    if(speed > 0){
+      if (Robot.lift.liftencoder.getPosition() > Robot.lift.top || Robot.lift.upperlimit.get()){
+      Robot.lift.lift.set(0);
+      }
+      else {
+        Robot.lift.lift.set(speed);
+      }
+    }
+    else {
+      if(Robot.lift.liftencoder.getPosition() < Robot.lift.bottom || Robot.lift.lowerlimit.get()){
+        Robot.lift.lift.set(0);
+      }
+      else {
+        Robot.lift.lift.set(speed);
+      }
+    }
     
   }
 

@@ -37,13 +37,24 @@ public class GetToLevel3 extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    
-    if (Robot.lift.liftencoder.getPosition() <= setpoint + .5 || Robot.lift.PIDSpeed(kp, kd, error) < 0){
-      Robot.lift.lift.set(Robot.lift.PIDSpeed(kp, kd, error));
-      }
-      else {
-        Robot.lift.lift.set(0);
-      }
+  double speed = Robot.lift.PIDSpeed(kp, kd, error);
+  
+  if(speed > 0){
+    if (Robot.lift.liftencoder.getPosition() > Robot.lift.top || Robot.lift.upperlimit.get()){
+    Robot.lift.lift.set(0);
+    }
+    else {
+      Robot.lift.lift.set(speed);
+    }
+  }
+  else {
+    if(Robot.lift.liftencoder.getPosition() < Robot.lift.bottom || Robot.lift.lowerlimit.get()){
+      Robot.lift.lift.set(0);
+    }
+    else {
+      Robot.lift.lift.set(speed);
+    }
+  }
   }
 
   // Make this return true when this Command no longer needs to run execute()
