@@ -12,7 +12,12 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.CargoCargo;
 import frc.robot.commands.ManualArm;
 import frc.robot.commands.RocketCargo;
+import frc.robot.commands.ApproachLevelOne;
+import frc.robot.commands.ApproachLevelTwo;
 import frc.robot.commands.CenterTarget;
+import frc.robot.commands.EjectHatch;
+import frc.robot.commands.GetToLevel3;
+import frc.robot.commands.OperatorLift;
 import frc.robot.commands.LevelClimb;
 import frc.robot.commands.ManualWinchDown;
 import frc.robot.commands.ManualWinchUp;
@@ -66,6 +71,12 @@ public OI(){
     o12.whenPressed(new RocketCargo());    
 
 
+    o1.whenPressed(new EjectHatch());
+    o2.whenPressed(new ApproachLevelOne());
+    o5.whenPressed(new ApproachLevelTwo());
+    o6.whenPressed(new GetToLevel3());
+    o7.whenPressed(new OperatorLift());
+    
     d2.whileHeld(new CenterTarget());
 
     d3.whileHeld(new ManualWinchDown());

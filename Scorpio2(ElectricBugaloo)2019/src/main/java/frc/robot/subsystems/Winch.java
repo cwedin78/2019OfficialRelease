@@ -15,6 +15,7 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.commands.OperatorLift;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.Joystick;
 
@@ -52,10 +53,9 @@ public Winch() {
 
 
   /**
- * This will be a much easier way to call PID loops using the drive
- * This method will likely be found on other subsystems soon enough
- * @param kP (the constant for the proportional part of PID)
- * @param kD (the constant for the derivative part of PID)
+ * This is a manual pid loop where you can set the P and D values
+ * @param kP (the coefficients for the proportional part of PID)
+ * @param kD (the coefficients for the derivative part of PID)
  * @param error (the source of error for the PID loop)
  * 
  */
@@ -75,7 +75,6 @@ public double PIDSpeed(double kP, double kD, double error){
  return value;
   }
 }
-
 
   @Override
   public void initDefaultCommand() {

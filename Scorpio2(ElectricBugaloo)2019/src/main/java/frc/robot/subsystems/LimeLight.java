@@ -20,16 +20,15 @@ public class LimeLight extends Subsystem {
   public edu.wpi.first.networktables.NetworkTable camera;
   public NetworkTableEntry tx;
   public NetworkTableEntry cameraMode;
-  public NetworkTableEntry ledMode;
+  public NetworkTableEntry ledMode; 
 
   public LimeLight() {
     camera = NetworkTableInstance.getDefault().getTable("limelight");
     ledMode = camera.getEntry("tx");
     cameraMode = camera.getEntry("cameraMode");
-    ledMode = camera.getEntry("ledMode");
-
+    ledMode = camera.getEntry("ledMode");   
   }
-
+  
   public void SetVisionProcessingMode(int color, int light) {
     cameraMode.setDouble(color);
     ledMode.setDouble(light);

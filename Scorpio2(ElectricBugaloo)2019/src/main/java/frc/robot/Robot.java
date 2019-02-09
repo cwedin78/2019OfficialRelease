@@ -13,12 +13,14 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.ExampleCommand;
-import frc.robot.commands.ManualArm;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.LimeLight;
 import frc.robot.subsystems.PDP;
+import frc.robot.subsystems.Elevator;
+import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.HatchRelease;
 import frc.robot.subsystems.Winch;
 
 /**
@@ -29,13 +31,15 @@ import frc.robot.subsystems.Winch;
  * project.
  */
 public class Robot extends TimedRobot {
-public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
-public static PDP pdp;
-public static Arm arm;
-public static OI m_oi;
-public static LimeLight limelight;
-public static DriveTrain drivetrain;
-public static Winch winch;
+  public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
+  public static PDP pdp;
+  public static LimeLight limelight;
+  public static DriveTrain drivetrain;
+  public static Elevator lift;
+  public static HatchRelease release;
+  public static Winch winch;
+  public static Arm arm;
+  public static OI m_oi;
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -49,6 +53,8 @@ public static Winch winch;
     pdp = new PDP();
     drivetrain = new DriveTrain();
     limelight = new LimeLight();
+    lift = new Elevator();
+    release = new HatchRelease();
     winch = new Winch();
     arm = new Arm();
     m_oi = new OI();
@@ -141,6 +147,8 @@ public static Winch winch;
 
   @Override
   public void teleopPeriodic() {
+    SmartDashboard.putNumber("lift speed", Robot.lift.lift.get());
+    SmartDashboard.putNumber("lift position", Robot.lift.liftencoder.getPosition());
     SmartDashboard.putNumber("Roll", Robot.winch.navx.getRoll());
     SmartDashboard.putNumber("winch encoder", Robot.winch.winchEncoder.get());
     SmartDashboard.putNumber("armEncoder", Robot.arm.armEncoder.get());
