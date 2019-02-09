@@ -12,7 +12,10 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.CargoCargo;
 import frc.robot.commands.ManualArm;
 import frc.robot.commands.RocketCargo;
-
+import frc.robot.commands.CenterTarget;
+import frc.robot.commands.LevelClimb;
+import frc.robot.commands.ManualWinchDown;
+import frc.robot.commands.ManualWinchUp;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -63,7 +66,15 @@ public OI(){
     o12.whenPressed(new RocketCargo());    
 
 
+ d2.whileHeld(new CenterTarget());
+
+    d3.whileHeld(new ManualWinchDown());
+    d4.whileHeld(new ManualWinchUp());
+    d5.whileHeld(new LevelClimb());
+    
   }
+
+ 
   //// CREATING BUTTONS
   // One type of button is a joystick button which is any button on a
   //// joystick.

@@ -45,6 +45,33 @@ public class Arm extends Subsystem {
 
   spiked = new Timer();
   }
+
+
+  /**
+ * This will be a much easier way to call PID loops using the drive
+ * This method will likely be found on other subsystems soon enough
+ * @param kP (the constant for the proportional part of PID)
+ * @param kD (the constant for the derivative part of PID)
+ * @param error (the source of error for the PID loop)
+ * 
+ */
+public double PIDSpeed(double kP, double kD, double error){
+
+
+  value = (kP * error) + (kD * (error - last_error) / 0.05);
+
+  last_error = error;
+
+  if (value > 1){
+    return 1;
+  }
+  else if (value < -1){
+    return -1;
+  }
+  else {
+ return value;
+  }
+}
 /**
  * configures a controller input throught the X,Y, or Z axes, and combines them with the throttle.
  * This creates a precise control with the use of deadzones and a precision scale.
@@ -83,42 +110,17 @@ if (pTrig){
   pScale = 1;
 }
 else{
-  pScale = (pMag + (maximumscale - minimumscale) + minimumscale);
+  pScale = (pMag * (maximumscale - minimumscale) + minimumscale);
 }
 if (Math.abs(input)< deadzone){
   returnvalue = 0;
 }
 else{
-  returnvalue = Math.signum(input) * pScale * ((Math.abs(input) - deadzone) *(1/1 - deadzone));
+  returnvalue = Math.signum(input) * pScale * ((Math.abs(input) - deadzone) *(1/(1 - deadzone)));
 }
 return returnvalue;
 }
 
-  /**
- * This will be a much easier way to call PID loops using the drive
- * This method will likely be found on other subsystems soon enough
- * @param kP (the constant for the proportional part of PID)
- * @param kD (the constant for the derivative part of PID)
- * @param error (the source of error for the PID loop)
- * 
- */
-public double PIDSpeed(double kP, double kD, double error){
-
-
-  value = (kP * error) + (kD * (error - last_error) / 0.05);
-
-  last_error = error;
-
-  if (value > 1){
-    return 1;
-  }
-  else if (value < -1){
-    return -1;
-  }
-  else {
- return value;
-  }
-}
 
   @Override
   public void initDefaultCommand() {

@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import frc.robot.commands.DriverInput;
 
 /**
  * Add your docs here.
@@ -31,8 +32,6 @@ public class DriveTrain extends Subsystem {
     right1 = new WPI_TalonSRX(4);
     right2 = new WPI_TalonSRX(5);
 
-    left1.setInverted(true);
-    right1.setInverted(true);
     
     left = new SpeedControllerGroup(left0, left1, left2);
     right = new SpeedControllerGroup(right0, right1, right2);
@@ -79,7 +78,7 @@ public class DriveTrain extends Subsystem {
  */
   
 public void inputdrive(double forward, double twist){
-  drive.tankDrive(forward, twist);
+  drive.arcadeDrive(forward, twist);
 }
 /**
  * configures a controller input throught the X,Y, or Z axes, and combines them with the throttle.
@@ -92,8 +91,7 @@ public void inputdrive(double forward, double twist){
  * @param inverted (whether or not you need to flip the controller input)
  */
 
-
-public double CalculateControllerValue(double deadzone, double minimumscale, double maximumscale, Joystick controllertype, boolean inverted, String controllerinput){
+public double CalculateControllerValue(double deadzone, double minimumscale, double maximumscale, Joystick controllertype, boolean inverted, String controllerinput ){
   double input;
   double returnvalue;
 
@@ -119,22 +117,21 @@ if (pTrig){
   pScale = 1;
 }
 else{
-  pScale = (pMag + (maximumscale - minimumscale) + minimumscale);
+  pScale = (pMag * (maximumscale - minimumscale) + minimumscale);
 }
 if (Math.abs(input)< deadzone){
   returnvalue = 0;
 }
 else{
-  returnvalue = Math.signum(input) * pScale * ((Math.abs(input) - deadzone) *(1/1 - deadzone));
+  returnvalue = Math.signum(input) * pScale * ((Math.abs(input) - deadzone) *(1/(1 - deadzone)));
 }
 return returnvalue;
 }
 
-
-  
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
+    setDefaultCommand(new DriverInput());
   }
 }
