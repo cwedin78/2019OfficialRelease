@@ -145,7 +145,8 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
-    SmartDashboard.putNumber("liftspeed", Robot.lift.lift.get());
+    SmartDashboard.putNumber("lift speed", Robot.lift.lift.get());
+    SmartDashboard.putNumber("lift position", Robot.lift.liftencoder.getPosition());
     SmartDashboard.putNumber("Roll", Robot.winch.navx.getRoll());
     SmartDashboard.putNumber("winch encoder", Robot.winch.winchEncoder.get());
     Scheduler.getInstance().run();
