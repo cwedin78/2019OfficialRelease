@@ -44,7 +44,7 @@ public class RocketCargo extends Command {
 
     Robot.arm.armMotor.set(Robot.arm.PIDSpeed(kp, kd, error));
 
-  if(Robot.m_oi.operator.getRawButton(3) && Robot.arm.spiked.get() > Robot.arm.stalltime){
+  if(Robot.m_oi.operator.getRawButton(3) && Robot.arm.spiked.get() < Robot.arm.stalltime){
       Robot.arm.intake.set(-1);
     }
     else if (Robot.m_oi.operator.getRawButton(4)){
