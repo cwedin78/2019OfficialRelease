@@ -24,7 +24,7 @@ public class ApproachLevelTwo extends Command {
   @Override
   protected void initialize() {
 
-    kp = .05;
+    kp = .01;
     kd = .03;
 
     setpoint = 46.42; //closest estimate as of now

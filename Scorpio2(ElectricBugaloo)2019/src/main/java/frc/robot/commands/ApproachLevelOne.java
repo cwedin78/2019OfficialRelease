@@ -22,7 +22,8 @@ public class ApproachLevelOne extends Command {
   @Override
   protected void initialize() {
 
-    
+    kp = 0.01;
+    kd = 0.05;
 
     error = 0 - Robot.lift.liftencoder.getPosition();
 

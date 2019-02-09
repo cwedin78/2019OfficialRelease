@@ -12,6 +12,7 @@ import frc.robot.Robot;
 
 public class OperatorLift extends Command {
   public OperatorLift() {
+    
     requires(Robot.lift);
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);

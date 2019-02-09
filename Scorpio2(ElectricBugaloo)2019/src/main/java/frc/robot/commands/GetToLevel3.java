@@ -24,7 +24,7 @@ public class GetToLevel3 extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    kp = .05;
+    kp = .01;
     kd = .03;
 
     setpoint = 92.84; //closest estimate as of now

@@ -78,7 +78,6 @@ public double PIDSpeed(double kP, double kD, double error){
 
   @Override
   public void initDefaultCommand() {
-    setDefaultCommand(new OperatorLift());
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }
