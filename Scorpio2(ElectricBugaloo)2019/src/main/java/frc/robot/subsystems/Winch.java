@@ -40,7 +40,7 @@ public Winch() {
   winchMotor = new WPI_TalonSRX(10);
   winchEncoder = new Encoder(4, 5, false);
 
-  highlimit = 91200;
+  highlimit = 91200; // to be determined later
   lowlimit = -5;
 
   try {

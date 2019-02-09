@@ -25,29 +25,32 @@ public class ManualWinchUp extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    
+
     if(Robot.winch.winchEncoder.get() >= Robot.winch.highlimit){
       Robot.winch.winchMotor.set(0);
     }
     else {
       Robot.winch.winchMotor.set(.2);
     }
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return Robot.winch.winchEncoder.get() >= Robot.winch.highlimit || !Robot.m_oi.driver.getRawButton(4);
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.winch.winchMotor.set(0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    Robot.winch.winchMotor.set(0);
   }
 }

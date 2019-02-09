@@ -38,17 +38,19 @@ public class ManualWinchDown extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return Robot.winch.winchEncoder.get() <= Robot.winch.lowlimit || !Robot.m_oi.driver.getRawButton(3);
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.winch.winchMotor.set(0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    Robot.winch.winchMotor.set(0);
   }
 }
