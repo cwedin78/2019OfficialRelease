@@ -17,7 +17,6 @@ import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.ManualArm;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.DriveTrain;
-import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.LimeLight;
 
