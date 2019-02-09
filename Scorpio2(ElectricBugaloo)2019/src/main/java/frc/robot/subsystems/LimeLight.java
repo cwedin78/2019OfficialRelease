@@ -11,6 +11,7 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
+import frc.robot.commands.Lime;
 
 /**
  * Add your docs here.
@@ -21,9 +22,8 @@ public class LimeLight extends Subsystem {
   public NetworkTableEntry cameraMode;
   public NetworkTableEntry ledMode; 
 
-
-  public LimeLight(){
-    camera = NetworkTableInstance.getDefault().getTable("limelihgt");
+  public LimeLight() {
+    camera = NetworkTableInstance.getDefault().getTable("limelight");
     ledMode = camera.getEntry("tx");
     cameraMode = camera.getEntry("cameraMode");
     ledMode = camera.getEntry("ledMode");   
@@ -37,8 +37,7 @@ public class LimeLight extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    //setDefaultCommand(new lime());
-    // Set the default command for a subsystem here.
+    setDefaultCommand(new Lime());
     // setDefaultCommand(new MySpecialCommand());
   }
 }

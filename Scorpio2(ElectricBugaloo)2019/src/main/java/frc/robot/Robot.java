@@ -12,15 +12,15 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.commands.CenterTarget;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.DriveTrain;
-import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.LimeLight;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.HatchRelease;
+import frc.robot.subsystems.Winch;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -35,6 +35,8 @@ public class Robot extends TimedRobot {
   public static DriveTrain drivetrain;
   public static Elevator lift;
   public static HatchRelease release;
+  public static Winch winch;
+  public static Arm arm;
   public static OI m_oi;
 
   Command m_autonomousCommand;
@@ -50,11 +52,13 @@ public class Robot extends TimedRobot {
     drivetrain = new DriveTrain();
     lift = new Elevator();
     release = new HatchRelease();
+    winch = new Winch();
+    arm = new Arm();
     m_oi = new OI();
     m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
-    // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
   }
+  
 
   /**
    * This function is called every robot packet, no matter the mode. Use
@@ -66,7 +70,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
- 
+
   }
 
   /**
@@ -96,6 +100,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
+
+
     m_autonomousCommand = m_chooser.getSelected();
 
     /*
@@ -116,11 +122,14 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousPeriodic() {
+
     Scheduler.getInstance().run();
   }
 
   @Override
   public void teleopInit() {
+
+    Robot.winch.navx.reset();
     // This makes sure that the autonomous stops running when
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
@@ -133,8 +142,11 @@ public class Robot extends TimedRobot {
   /**
    * This function is called periodically during operator control.
    */
+
   @Override
   public void teleopPeriodic() {
+    SmartDashboard.putNumber("Roll", Robot.winch.navx.getRoll());
+    SmartDashboard.putNumber("winch encoder", Robot.winch.winchEncoder.get());
     Scheduler.getInstance().run();
   }
 

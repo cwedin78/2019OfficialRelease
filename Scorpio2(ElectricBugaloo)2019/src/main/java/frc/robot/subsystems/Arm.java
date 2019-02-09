@@ -7,39 +7,37 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import frc.robot.commands.DriverInput;
 
 /**
  * Add your docs here.
  */
-public class DriveTrain extends Subsystem {
-  public WPI_TalonSRX left0, left1, left2, right0, right1, right2;
-  public SpeedControllerGroup left, right;
-  public DifferentialDrive drive;
-  double value, last_error;
+public class Arm extends Subsystem {
+  // Put methods for controlling this subsystem
+  // here. Call these from Commands.
+  public WPI_TalonSRX armMotor;
+  public WPI_TalonSRX intake;
+  public Encoder armEncoder;
 
-  public DriveTrain(){
-    left0 = new WPI_TalonSRX(0);
-    left1 = new WPI_TalonSRX(1);
-    left2 = new WPI_TalonSRX(2); 
-    right0 = new WPI_TalonSRX(3);
-    right1 = new WPI_TalonSRX(4);
-    right2 = new WPI_TalonSRX(5);
+  public double value, last_error;
 
-    
-    left = new SpeedControllerGroup(left0, left1, left2);
-    right = new SpeedControllerGroup(right0, right1, right2);
 
-    drive = new DifferentialDrive(left, right);
+  public Arm() {
+  armMotor = new WPI_TalonSRX(6);
+  intake = new WPI_TalonSRX(7);
+  armEncoder = new Encoder(0, 1, false);
 
+ 
+  
   }
-/**
+
+
+  /**
  * This will be a much easier way to call PID loops using the drive
  * This method will likely be found on other subsystems soon enough
  * @param kP (the constant for the proportional part of PID)
@@ -47,38 +45,22 @@ public class DriveTrain extends Subsystem {
  * @param error (the source of error for the PID loop)
  * 
  */
-
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
-
-  public double PIDSpeed(double kP, double kD, double error){
+public double PIDSpeed(double kP, double kD, double error){
 
 
-    value = (kP * error) + (kD * (error - last_error) / 0.05);
-  
-    last_error = error;
-  
-    if (value > 1){
-      return 1;
-    }
-    else if (value < -1){
-      return -1;
-    }
-    else {
-   return value;
-    }
+  value = (kP * error) + (kD * (error - last_error) / 0.05);
+
+  last_error = error;
+
+  if (value > 1){
+    return 1;
   }
-
-/**
- * This will bring the drive method one level higher so that it saves time for future uses of a command
- * @param forward
- * forward dictates how far forward or backwards your robot should be going by motor percantage
- * @param twist
- * Same as above, but spin speed
- */
-  
-public void inputdrive(double forward, double twist){
-  drive.arcadeDrive(forward, twist);
+  else if (value < -1){
+    return -1;
+  }
+  else {
+ return value;
+  }
 }
 /**
  * configures a controller input throught the X,Y, or Z axes, and combines them with the throttle.
@@ -90,6 +72,7 @@ public void inputdrive(double forward, double twist){
  * @param controllerinput (It's either "X", "Y", or "Z" for the three axes on a controller. Use caps, and put quotes) If X, Y, or Z are not chosen, it is defaulted to Z
  * @param inverted (whether or not you need to flip the controller input)
  */
+
 
 public double CalculateControllerValue(double deadzone, double minimumscale, double maximumscale, Joystick controllertype, boolean inverted, String controllerinput ){
   double input;
@@ -133,6 +116,5 @@ return returnvalue;
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
-    setDefaultCommand(new DriverInput());
   }
 }
