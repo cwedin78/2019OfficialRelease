@@ -12,6 +12,7 @@ import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -19,6 +20,8 @@ import frc.robot.commands.OperatorLift;
 
 
 public class Elevator extends Subsystem {
+
+public DigitalInput lowerlimit, upperlimit;
 
 public double value, last_error, controlDZ;
 
@@ -34,6 +37,9 @@ public CANEncoder liftencoder;
     //with the shaft average radius (it's a hex), it should be roughly .75 inches per rotation of the NEO
     liftencoder = new CANEncoder(lift);
 
+    lowerlimit = new DigitalInput(8);
+    upperlimit = new DigitalInput(9);
+    
     controlDZ = 0.3;
 
   }
