@@ -29,7 +29,7 @@ public class CenterTarget extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    forward = Robot.drivetrain.CalculateControllerValue(.3, .25, .75, Robot.m_oi.driver, false, "y");
+    forward = Robot.drivetrain.CalculateControllerValue(.3, .25, .75, Robot.m_oi.driver, false, "Y");
 
     correction = Robot.drivetrain.PIDSpeed(kP, kD, Robot.limelight.tx.getDouble(0.0 * -1));
 
