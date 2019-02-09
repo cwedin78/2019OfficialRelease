@@ -15,6 +15,7 @@ public class ManualArm extends Command {
   public Timer spikedtime;
 public ManualArm() {
   requires(Robot.arm);
+  requires(Robot.pdp);
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -30,7 +31,7 @@ public ManualArm() {
   @Override
   protected void execute() {
 
-    if(Robot.arm.armMotor.getBusVoltage() > Robot.arm.stallvalue){
+    if(Robot.pdp.board.getCurrent(10) > Robot.arm.stallvalue){
       Robot.arm.spiked.start();
     }
     else {

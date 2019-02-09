@@ -19,6 +19,7 @@ import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.LimeLight;
+import frc.robot.subsystems.PDP;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -30,6 +31,7 @@ import frc.robot.subsystems.LimeLight;
 public class Robot extends TimedRobot {
 public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
 public static LimeLight limelight;
+public static PDP pdp;
 public static DriveTrain drivetrain;
 public static Arm arm;
 public static OI m_oi;
@@ -43,6 +45,7 @@ public static OI m_oi;
    */
   @Override
   public void robotInit() {
+    pdp = new PDP();
     arm = new Arm();
     limelight = new LimeLight();
     drivetrain = new DriveTrain();

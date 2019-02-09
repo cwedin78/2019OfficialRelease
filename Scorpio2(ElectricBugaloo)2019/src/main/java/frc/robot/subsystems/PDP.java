@@ -15,10 +15,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class PDP extends Subsystem {
 
-public PowerDistributionPanel pdp;
+public PowerDistributionPanel board;
   public PDP(){
 
-  pdp = new PowerDistributionPanel();
+  board = new PowerDistributionPanel();
   
 
   }

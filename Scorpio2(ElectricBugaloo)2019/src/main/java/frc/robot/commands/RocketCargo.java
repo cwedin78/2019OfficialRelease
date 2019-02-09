@@ -15,6 +15,7 @@ public class RocketCargo extends Command {
   public RocketCargo() {
     
     requires(Robot.arm);
+    requires(Robot.pdp);
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -33,7 +34,7 @@ public class RocketCargo extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(Robot.arm.armMotor.getBusVoltage() > Robot.arm.stallvalue){
+    if(Robot.pdp.board.getCurrent(10) > Robot.arm.stallvalue){
       Robot.arm.spiked.start();
     }
     else {

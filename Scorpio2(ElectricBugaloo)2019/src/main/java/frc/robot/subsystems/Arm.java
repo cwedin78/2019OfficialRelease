@@ -36,7 +36,7 @@ public class Arm extends Subsystem {
   intake = new WPI_TalonSRX(7);
   armEncoder = new Encoder(0, 1, false);
 
-  stallvalue = 12;
+  stallvalue = 40;
   stalltime = .5;
 
   spiked = new Timer();
