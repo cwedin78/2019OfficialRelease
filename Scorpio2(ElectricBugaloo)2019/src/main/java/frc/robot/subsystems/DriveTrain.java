@@ -23,7 +23,7 @@ public class DriveTrain extends Subsystem {
   public DifferentialDrive drive;
   double value, last_error;
 
-  public DriveTrain(){
+  public DriveTrain(){ 
     left0 = new WPI_TalonSRX(0);
     left1 = new WPI_TalonSRX(1);
     left2 = new WPI_TalonSRX(2); 
@@ -93,7 +93,7 @@ public void inputdrive(double forward, double twist){
  */
 
 
-public double CalculateControllerValue(double deadzone, double minimumscale, double maximumscale, Joystick controllertype, boolean inverted, String controllerinput ){
+public double CalculateControllerValue(double deadzone, double minimumscale, double maximumscale, Joystick controllertype, boolean inverted, String controllerinput){
   double input;
   double returnvalue;
 

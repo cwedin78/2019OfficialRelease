@@ -7,9 +7,9 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Timer;
@@ -26,6 +26,8 @@ public class Arm extends Subsystem {
   public Timer spiked;
   public WPI_TalonSRX armMotor, intake;
   public Encoder armEncoder;
+  
+  public DigitalInput limitArmOne, limitArmTwo;
 
   public double value, last_error, stallvalue, stalltime;
 
@@ -35,6 +37,8 @@ public class Arm extends Subsystem {
   armMotor = new WPI_TalonSRX(6);
   intake = new WPI_TalonSRX(7);
   armEncoder = new Encoder(0, 1, false);
+  limitArmOne = new DigitalInput(6);
+  limitArmTwo = new DigitalInput(7);
 
   stallvalue = 40;
   stalltime = .5;
