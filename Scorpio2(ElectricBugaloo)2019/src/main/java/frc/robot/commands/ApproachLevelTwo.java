@@ -25,11 +25,10 @@ public class ApproachLevelTwo extends Command {
   protected void initialize() {
 
     kp = .01;
-    kd = .03;
+    kd = .003;
 
     setpoint = 46.42; //closest estimate as of now
 
-    error = setpoint - Robot.lift.liftencoder.getPosition();
 
 
   }
@@ -37,6 +36,7 @@ public class ApproachLevelTwo extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+  error = setpoint - Robot.lift.liftencoder.getPosition();
 
     double speed = Robot.lift.PIDSpeed(kp, kd, error);
   
@@ -55,7 +55,7 @@ public class ApproachLevelTwo extends Command {
       else {
         Robot.lift.lift.set(speed);
       }
-    }
+    } 
     
   }
 

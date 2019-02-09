@@ -23,15 +23,16 @@ public class ApproachLevelOne extends Command {
   protected void initialize() {
 
     kp = 0.01;
-    kd = 0.05;
+    kd = 0.003;
 
-    error = 0 - Robot.lift.liftencoder.getPosition();
 
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    error = -1 * Robot.lift.liftencoder.getPosition();
+
     double speed = Robot.lift.PIDSpeed(kp, kd, error);
   
   if(speed > 0){
@@ -48,9 +49,10 @@ public class ApproachLevelOne extends Command {
     }
     else {
       Robot.lift.lift.set(speed);
-    }
+     }
+     } 
   }
-  }
+  
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
