@@ -9,13 +9,12 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.subsystems.LimeLight;
 
-public class Lime extends Command {
-  public Lime() {
-requires(Robot.limelight);
+public class ShootCargo extends Command {
+  public ShootCargo() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    requires(Robot.arm);
   }
 
   // Called just before this Command runs the first time
@@ -26,7 +25,7 @@ requires(Robot.limelight);
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-  Robot.limelight.SetVisionProcessingMode(1, 1);
+    Robot.arm.intake.set(1);
   }
 
   // Make this return true when this Command no longer needs to run execute()

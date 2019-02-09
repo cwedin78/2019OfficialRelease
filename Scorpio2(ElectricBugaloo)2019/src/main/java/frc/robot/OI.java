@@ -10,6 +10,9 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.CenterTarget;
+import frc.robot.commands.LevelClimb;
+import frc.robot.commands.ManualWinchDown;
+import frc.robot.commands.ManualWinchUp;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -58,6 +61,10 @@ public class OI {
 
  d2.whileHeld(new CenterTarget());
 
+    d3.whileHeld(new ManualWinchDown());
+    d4.whileHeld(new ManualWinchUp());
+    d5.whileHeld(new LevelClimb());
+    
   }
 
  
