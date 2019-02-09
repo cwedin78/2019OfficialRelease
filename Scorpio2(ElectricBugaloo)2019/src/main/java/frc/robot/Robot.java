@@ -15,7 +15,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.DriveTrain;
-import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.LimeLight;
 import frc.robot.subsystems.Winch;
@@ -31,7 +30,6 @@ public class Robot extends TimedRobot {
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static LimeLight limelight;
   public static DriveTrain driveTrain;
-  public static Elevator vator;
   public static Winch winch;
   public static Arm arm;
   public static OI m_oi;
@@ -47,7 +45,6 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     limelight = new LimeLight();
     driveTrain = new DriveTrain();
-    vator = new Elevator();
     winch = new Winch();
     arm = new Arm();
     m_oi = new OI();

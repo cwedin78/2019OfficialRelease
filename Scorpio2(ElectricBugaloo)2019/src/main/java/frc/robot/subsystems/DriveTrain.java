@@ -92,7 +92,6 @@ public void inputdrive(double forward, double twist){
  * @param inverted (whether or not you need to flip the controller input)
  */
 
-
 public double CalculateControllerValue(double deadzone, double minimumscale, double maximumscale, Joystick controllertype, boolean inverted, String controllerinput ){
   double input;
   double returnvalue;
@@ -119,13 +118,13 @@ if (pTrig){
   pScale = 1;
 }
 else{
-  pScale = (pMag + (maximumscale - minimumscale) + minimumscale);
+  pScale = (pMag * (maximumscale - minimumscale) + minimumscale);
 }
 if (Math.abs(input)< deadzone){
   returnvalue = 0;
 }
 else{
-  returnvalue = Math.signum(input) * pScale * ((Math.abs(input) - deadzone) *(1/1 - deadzone));
+  returnvalue = Math.signum(input) * pScale * ((Math.abs(input) - deadzone) *(1/(1 - deadzone)));
 }
 return returnvalue;
 }
