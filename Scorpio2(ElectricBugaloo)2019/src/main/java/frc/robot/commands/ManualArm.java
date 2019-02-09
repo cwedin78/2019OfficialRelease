@@ -31,7 +31,7 @@ public ManualArm() {
   @Override
   protected void execute() {
 
-    if(Robot.pdp.board.getCurrent(10) > Robot.arm.stallvalue){
+    if(Robot.pdp.board.getCurrent(8) > Robot.arm.stallvalue){
       Robot.arm.spiked.start();
     }
     else {

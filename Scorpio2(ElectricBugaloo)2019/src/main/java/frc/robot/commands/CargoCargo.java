@@ -33,7 +33,7 @@ public CargoCargo() {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(Robot.pdp.board.getCurrent(10) > Robot.arm.stallvalue){
+    if(Robot.pdp.board.getCurrent(8) > Robot.arm.stallvalue){
       Robot.arm.spiked.start();
     }
     else {
