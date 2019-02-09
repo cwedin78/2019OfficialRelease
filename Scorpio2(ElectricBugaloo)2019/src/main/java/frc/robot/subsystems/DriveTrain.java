@@ -32,8 +32,6 @@ public class DriveTrain extends Subsystem {
     right1 = new WPI_TalonSRX(4);
     right2 = new WPI_TalonSRX(5);
 
-    left1.setInverted(true);
-    right1.setInverted(true);
     
     left = new SpeedControllerGroup(left0, left1, left2);
     right = new SpeedControllerGroup(right0, right1, right2);
@@ -80,7 +78,7 @@ public class DriveTrain extends Subsystem {
  */
   
 public void inputdrive(double forward, double twist){
-  drive.tankDrive(forward, twist);
+  drive.arcadeDrive(forward, twist);
 }
 /**
  * configures a controller input throught the X,Y, or Z axes, and combines them with the throttle.
