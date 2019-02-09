@@ -32,7 +32,7 @@ public class LevelClimb extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double speed = Robot.winch.PIDSpeed(kP, kD, Robot.winch.navx.getPitch());
+    double speed = Robot.winch.PIDSpeed(kP, kD, Robot.winch.navx.getRoll());
 
     Robot.arm.armMotor.set(Robot.arm.CalculateControllerValue(0.3, 0.1, 1, Robot.m_oi.operator, true, "Y"));
 

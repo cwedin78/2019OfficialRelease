@@ -60,8 +60,6 @@ public Winch() {
  * 
  */
 public double PIDSpeed(double kP, double kD, double error){
-  
-
 
   value = (kP * error) + (kD * (error - last_error) / 0.05);
 

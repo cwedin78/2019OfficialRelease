@@ -93,6 +93,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
+
+
     m_autonomousCommand = m_chooser.getSelected();
 
     /*
@@ -113,11 +115,14 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousPeriodic() {
+
     Scheduler.getInstance().run();
   }
 
   @Override
   public void teleopInit() {
+
+    Robot.winch.navx.reset();
     // This makes sure that the autonomous stops running when
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
@@ -130,8 +135,11 @@ public class Robot extends TimedRobot {
   /**
    * This function is called periodically during operator control.
    */
+
   @Override
   public void teleopPeriodic() {
+    SmartDashboard.putNumber("Roll", Robot.winch.navx.getRoll());
+    SmartDashboard.putNumber("winch encoder", Robot.winch.winchEncoder.get());
     Scheduler.getInstance().run();
   }
 
