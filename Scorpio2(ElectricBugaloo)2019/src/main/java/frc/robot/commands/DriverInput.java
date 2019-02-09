@@ -28,7 +28,7 @@ public class DriverInput extends Command {
     double forward;
     double twist;
 
-    forward = Robot.drivetrain.CalculateControllerValue(.3, .25, .75, Robot.m_oi.driver, true, "Y");
+    forward = Robot.drivetrain.CalculateControllerValue(.3, .25, .75, Robot.m_oi.driver, false, "Y");
     twist = Robot.drivetrain.CalculateControllerValue(.3, .25, .75, Robot.m_oi.driver, false, "Z");
 
     Robot.drivetrain.inputdrive(forward, twist);
