@@ -143,6 +143,7 @@ public static Winch winch;
   public void teleopPeriodic() {
     SmartDashboard.putNumber("Roll", Robot.winch.navx.getRoll());
     SmartDashboard.putNumber("winch encoder", Robot.winch.winchEncoder.get());
+    SmartDashboard.putNumber("armEncoder", Robot.arm.armEncoder.get());
     Scheduler.getInstance().run();
   }
 

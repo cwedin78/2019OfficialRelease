@@ -30,6 +30,7 @@ public ManualArm() {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    double armspeed = Robot.arm.CalculateControllerValue(.3, .1, 1, Robot.m_oi.operator, true, "Y");
 
     if(Robot.pdp.board.getCurrent(8) > Robot.arm.stallvalue){
       Robot.arm.spiked.start();
@@ -47,8 +48,10 @@ public ManualArm() {
     }
     else{
       Robot.arm.intake.set(0);
-    }    
-    Robot.arm.armMotor.set(Robot.arm.CalculateControllerValue(.3, .1, 1, Robot.m_oi.operator, true, "Y"));
+
+    } 
+    
+    Robot.arm.armMotor.set(armspeed);
 
   }
 
