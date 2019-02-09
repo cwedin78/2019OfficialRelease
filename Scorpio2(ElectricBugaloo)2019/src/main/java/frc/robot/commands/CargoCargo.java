@@ -33,6 +33,7 @@ public CargoCargo() {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    double armspeed = Robot.arm.PIDSpeed(kP, kD, error);
     if(Robot.pdp.board.getCurrent(8) > Robot.arm.stallvalue){
       Robot.arm.spiked.start();
     }
@@ -50,7 +51,17 @@ public CargoCargo() {
   else{
     Robot.arm.intake.set(0);
   }  
-  Robot.arm.armMotor.set(Robot.arm.PIDSpeed(kP, kD, error));
+
+  
+  if(armspeed < 0 && Robot.arm.armEncoder.get() <= Robot.arm.botlimit){
+    Robot.arm.armMotor.set(0);
+  }
+  else if (armspeed > 0 && Robot.arm.armEncoder.get() >= Robot.arm.groundlimit){
+    Robot.arm.armMotor.set(0);
+  }
+  else{
+  Robot.arm.armMotor.set(armspeed);
+  }
 
   }
 

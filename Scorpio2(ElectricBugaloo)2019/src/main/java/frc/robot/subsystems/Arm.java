@@ -29,7 +29,7 @@ public class Arm extends Subsystem {
   
   public DigitalInput limitArmOne, limitArmTwo;
 
-  public double value, last_error, stallvalue, stalltime;
+  public double value, last_error, stallvalue, stalltime, botlimit, groundlimit;
 
 
   public Arm() {
@@ -44,6 +44,10 @@ public class Arm extends Subsystem {
   stalltime = .5;
 
   spiked = new Timer();
+
+
+  groundlimit = 1439;
+  botlimit = -5;
   }
 
 

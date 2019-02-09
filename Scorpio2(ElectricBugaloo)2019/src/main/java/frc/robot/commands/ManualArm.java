@@ -50,9 +50,15 @@ public ManualArm() {
       Robot.arm.intake.set(0);
 
     } 
-    
+    if(armspeed < 0 && Robot.arm.armEncoder.get() <= Robot.arm.botlimit){
+      Robot.arm.armMotor.set(0);
+    }
+    else if (armspeed > 0 && Robot.arm.armEncoder.get() >= Robot.arm.groundlimit){
+      Robot.arm.armMotor.set(0);
+    }
+    else{
     Robot.arm.armMotor.set(armspeed);
-
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()

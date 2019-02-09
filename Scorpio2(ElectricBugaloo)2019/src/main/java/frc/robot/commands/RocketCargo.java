@@ -34,6 +34,8 @@ public class RocketCargo extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    double armspeed = Robot.arm.PIDSpeed(kp, kd, error);
+
     if(Robot.pdp.board.getCurrent(8) > Robot.arm.stallvalue){
       Robot.arm.spiked.start();
     }
@@ -41,8 +43,16 @@ public class RocketCargo extends Command {
       Robot.arm.spiked.stop();
       Robot.arm.spiked.reset();
     }
-
-    Robot.arm.armMotor.set(Robot.arm.PIDSpeed(kp, kd, error));
+    if(armspeed < 0 && Robot.arm.armEncoder.get() <= Robot.arm.botlimit){
+      Robot.arm.armMotor.set(0);
+    }
+    else if (armspeed > 0 && Robot.arm.armEncoder.get() >= Robot.arm.groundlimit){
+      Robot.arm.armMotor.set(0);
+    }
+    else{
+    Robot.arm.armMotor.set(armspeed);
+    }
+  
 
   if(Robot.m_oi.operator.getRawButton(3) && Robot.arm.spiked.get() < Robot.arm.stalltime){
       Robot.arm.intake.set(-1);
