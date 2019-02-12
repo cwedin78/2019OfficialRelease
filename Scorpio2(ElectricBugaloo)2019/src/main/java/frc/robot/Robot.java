@@ -102,6 +102,9 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
+    Robot.winch.navx.reset();
+    Robot.arm.armEncoder.reset();
+    
 
 
     m_autonomousCommand = m_chooser.getSelected();
@@ -124,6 +127,13 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousPeriodic() {
+    SmartDashboard.putNumber("intake current", Robot.pdp.board.getCurrent(8));
+    SmartDashboard.putNumber("stalltime", Robot.arm.spiked.get());
+    SmartDashboard.putNumber("lift speed", Robot.lift.lift.get());
+    SmartDashboard.putNumber("lift position", Robot.lift.liftencoder.getPosition());
+    SmartDashboard.putNumber("Roll", Robot.winch.navx.getRoll());
+    SmartDashboard.putNumber("winch encoder", Robot.winch.winchEncoder.get());
+    SmartDashboard.putNumber("armEncoder", Robot.arm.armEncoder.get());
 
     Scheduler.getInstance().run();
   }
@@ -147,11 +157,14 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
+    SmartDashboard.putNumber("intake current", Robot.pdp.board.getCurrent(8));
+    SmartDashboard.putNumber("stalltime", Robot.arm.spiked.get());
     SmartDashboard.putNumber("lift speed", Robot.lift.lift.get());
     SmartDashboard.putNumber("lift position", Robot.lift.liftencoder.getPosition());
     SmartDashboard.putNumber("Roll", Robot.winch.navx.getRoll());
     SmartDashboard.putNumber("winch encoder", Robot.winch.winchEncoder.get());
     SmartDashboard.putNumber("armEncoder", Robot.arm.armEncoder.get());
+    SmartDashboard.putNumber("anglespeed", Robot.arm.armMotor.get());
     Scheduler.getInstance().run();
   }
 

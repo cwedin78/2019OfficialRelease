@@ -24,16 +24,17 @@ public class RocketCargo extends Command {
   @Override
   protected void initialize() {
  
-    kp = .1;
-    kd = 0.04;
+    kp = Robot.arm.anglep;
+    kd = Robot.arm.angled;
 
     setpoint = 323;
-    error = setpoint - Robot.arm.armEncoder.get();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    error = setpoint - Robot.arm.armEncoder.get();
+
     double armspeed = Robot.arm.PIDSpeed(kp, kd, error);
 
     if(Robot.pdp.board.getCurrent(8) > Robot.arm.stallvalue){

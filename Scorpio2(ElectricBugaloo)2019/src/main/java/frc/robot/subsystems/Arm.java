@@ -29,7 +29,7 @@ public class Arm extends Subsystem {
   
   public DigitalInput limitArmOne, limitArmTwo;
 
-  public double value, last_error, stallvalue, stalltime, botlimit, groundlimit;
+  public double value, last_error, stallvalue, stalltime, botlimit, groundlimit, anglep, angled;
 
 
   public Arm() {
@@ -37,8 +37,6 @@ public class Arm extends Subsystem {
   armMotor = new WPI_TalonSRX(6);
   intake = new WPI_TalonSRX(7);
   armEncoder = new Encoder(0, 1, false);
-  limitArmOne = new DigitalInput(6);
-  limitArmTwo = new DigitalInput(7);
 
   stallvalue = 40;
   stalltime = .5;
@@ -48,6 +46,9 @@ public class Arm extends Subsystem {
 
   groundlimit = 1439;
   botlimit = -5;
+
+  anglep = 0.007;
+  angled = 0.001;
   }
 
 

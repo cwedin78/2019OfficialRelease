@@ -25,15 +25,18 @@ public CargoCargo() {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    kP = 0.1;
-    kD = 0.04;
-    error = 125 - Robot.arm.armEncoder.get();
+    kP = Robot.arm.anglep;
+    kD = Robot.arm.angled;
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+
+        error = 125 - Robot.arm.armEncoder.get();
+
     double armspeed = Robot.arm.PIDSpeed(kP, kD, error);
+
     if(Robot.pdp.board.getCurrent(8) > Robot.arm.stallvalue){
       Robot.arm.spiked.start();
     }
