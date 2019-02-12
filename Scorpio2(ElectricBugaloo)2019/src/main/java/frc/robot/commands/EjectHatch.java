@@ -27,7 +27,7 @@ public class EjectHatch extends Command {
     recoveryspeed = .7;
     resetspeed = .05;
     endhigh = 1316;
-    endrecovery = 2068;
+    endrecovery = 2168;
     stopticks = 2256;
 
   }
@@ -41,12 +41,14 @@ public class EjectHatch extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return Robot.release.roter.get() >= stopticks;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.release.thrower.set(0);
+    Robot.release.roter.reset();
   }
 
   // Called when another command which requires one or more of the same

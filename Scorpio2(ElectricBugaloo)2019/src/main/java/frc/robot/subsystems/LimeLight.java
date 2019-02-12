@@ -7,24 +7,24 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import frc.robot.commands.Lime;
  
 /**
  * Add your docs here.
  */
 public class LimeLight extends Subsystem {
-  public edu.wpi.first.networktables.NetworkTable camera;
+  public NetworkTable camera;
   public NetworkTableEntry tx;
   public NetworkTableEntry cameraMode;
   public NetworkTableEntry ledMode; 
 
   public LimeLight() {
     camera = NetworkTableInstance.getDefault().getTable("limelight");
-    ledMode = camera.getEntry("tx");
+    tx = camera.getEntry("tx");
     cameraMode = camera.getEntry("cameraMode");
     ledMode = camera.getEntry("ledMode");   
   }

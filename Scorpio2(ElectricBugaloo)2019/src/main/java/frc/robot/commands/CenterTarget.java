@@ -22,16 +22,19 @@ public CenterTarget() {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    kP = 0.1;
-    kD = 0.04;
+    kP = 0.02;
+    kD = 0.02;
+    Robot.limelight.SetVisionProcessingMode(0, 0);
+
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+
     forward = Robot.drivetrain.CalculateControllerValue(.3, .25, .75, Robot.m_oi.driver, false, "Y");
 
-    correction = Robot.drivetrain.PIDSpeed(kP, kD, Robot.limelight.tx.getDouble(0.0 * -1));
+    correction = Robot.drivetrain.PIDSpeed(kP, kD, Robot.limelight.tx.getDouble(0.0));
 
     Robot.drivetrain.inputdrive(forward, correction);
 
