@@ -9,6 +9,18 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.CargoCargo;
+import frc.robot.commands.ManualArm;
+import frc.robot.commands.RocketCargo;
+import frc.robot.commands.ApproachLevelOne;
+import frc.robot.commands.ApproachLevelTwo;
+import frc.robot.commands.CenterTarget;
+import frc.robot.commands.EjectHatch;
+import frc.robot.commands.GetToLevel3;
+import frc.robot.commands.OperatorLift;
+import frc.robot.commands.LevelClimb;
+import frc.robot.commands.ManualWinchDown;
+import frc.robot.commands.ManualWinchUp;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -16,16 +28,16 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  */
 public class OI {
 
-  public Joystick driver, operator;
+public Joystick driver, operator;
 
 
-  public JoystickButton d1, d2, d3, d4, d5, d6, d7, d8, d9, d10, d11, d12, o1, o2, o3, o4, o5, o6, o7, o8, o9, o10, o11, o12;
+public JoystickButton d1, d2, d3, d4, d5, d6, d7, d8, d9, d10, d11, d12, o1, o2, o3, o4, o5, o6, o7, o8, o9, o10, o11, o12;
 
 
-  public OI(){
+public OI(){
 
-    driver = new Joystick(0);
-    operator = new Joystick(1);
+  driver = new Joystick(0);
+  operator = new Joystick(1);
 
     d1 = new JoystickButton(driver, 1);
     d2 = new JoystickButton(driver, 2);
@@ -54,8 +66,26 @@ public class OI {
     o11 = new JoystickButton(operator, 11);
     o12 = new JoystickButton(operator, 12);
 
+    
+    o11.whenPressed(new CargoCargo());
+    o12.whenPressed(new RocketCargo());    
 
+
+    o1.whenPressed(new EjectHatch());
+    o2.whenPressed(new ApproachLevelOne());
+    o5.whenPressed(new ApproachLevelTwo());
+    o6.whenPressed(new GetToLevel3());
+    o7.whenPressed(new OperatorLift());
+    
+
+    d2.whileHeld(new CenterTarget());
+    d3.whileHeld(new ManualWinchDown());
+    d4.whileHeld(new ManualWinchUp());
+    d5.whileHeld(new LevelClimb());
+    
   }
+
+ 
   //// CREATING BUTTONS
   // One type of button is a joystick button which is any button on a
   //// joystick.

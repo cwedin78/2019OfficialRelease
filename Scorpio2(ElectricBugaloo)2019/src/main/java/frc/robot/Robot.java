@@ -13,7 +13,15 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.subsystems.Arm;
+import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.LimeLight;
+import frc.robot.subsystems.PDP;
+import frc.robot.subsystems.Elevator;
+import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.HatchRelease;
+import frc.robot.subsystems.Winch;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -24,6 +32,13 @@ import frc.robot.subsystems.ExampleSubsystem;
  */
 public class Robot extends TimedRobot {
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
+  public static PDP pdp;
+  public static LimeLight limelight;
+  public static DriveTrain drivetrain;
+  public static Elevator lift;
+  public static HatchRelease release;
+  public static Winch winch;
+  public static Arm arm;
   public static OI m_oi;
 
   Command m_autonomousCommand;
@@ -35,11 +50,18 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    pdp = new PDP();
+    drivetrain = new DriveTrain();
+    limelight = new LimeLight();
+    lift = new Elevator();
+    release = new HatchRelease();
+    winch = new Winch();
+    arm = new Arm();
     m_oi = new OI();
     m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
-    // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
   }
+  
 
   /**
    * This function is called every robot packet, no matter the mode. Use
@@ -80,6 +102,11 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
+    Robot.winch.navx.reset();
+    Robot.arm.armEncoder.reset();
+    
+
+
     m_autonomousCommand = m_chooser.getSelected();
 
     /*
@@ -100,11 +127,25 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousPeriodic() {
+    SmartDashboard.putNumber("intake current", Robot.pdp.board.getCurrent(8));
+    SmartDashboard.putNumber("stalltime", Robot.arm.spiked.get());
+    SmartDashboard.putNumber("lift speed", Robot.lift.lift.get());
+    SmartDashboard.putNumber("lift position", Robot.lift.liftencoder.getPosition());
+    SmartDashboard.putNumber("Roll", Robot.winch.navx.getRoll());
+    SmartDashboard.putNumber("winch encoder", Robot.winch.winchEncoder.get());
+    SmartDashboard.putNumber("armEncoder", Robot.arm.armEncoder.get());
+    SmartDashboard.putNumber("anglespeed", Robot.arm.armMotor.get());
+    SmartDashboard.putNumber("release encoder", Robot.release.roter.get());
+    SmartDashboard.putBoolean("lift top limit?", Robot.lift.upperlimit.get());
+    SmartDashboard.putBoolean("lift bottom limit?", Robot.lift.lowerlimit.get());
+
     Scheduler.getInstance().run();
   }
 
   @Override
   public void teleopInit() {
+
+    Robot.winch.navx.reset();
     // This makes sure that the autonomous stops running when
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
@@ -117,8 +158,21 @@ public class Robot extends TimedRobot {
   /**
    * This function is called periodically during operator control.
    */
+
   @Override
   public void teleopPeriodic() {
+    SmartDashboard.putNumber("intake current", Robot.pdp.board.getCurrent(8));
+    SmartDashboard.putNumber("stalltime", Robot.arm.spiked.get());
+    SmartDashboard.putNumber("lift speed", Robot.lift.lift.get());
+    SmartDashboard.putNumber("lift position", Robot.lift.liftencoder.getPosition());
+    SmartDashboard.putNumber("Roll", Robot.winch.navx.getRoll());
+    SmartDashboard.putNumber("winch encoder", Robot.winch.winchEncoder.get());
+    SmartDashboard.putNumber("armEncoder", Robot.arm.armEncoder.get());
+    SmartDashboard.putNumber("anglespeed", Robot.arm.armMotor.get());
+    SmartDashboard.putNumber("release encoder", Robot.release.roter.get());
+    SmartDashboard.putBoolean("lift top limit?", Robot.lift.upperlimit.get());
+    SmartDashboard.putBoolean("lift bottom limit?", Robot.lift.lowerlimit.get());
+    
     Scheduler.getInstance().run();
   }
 
