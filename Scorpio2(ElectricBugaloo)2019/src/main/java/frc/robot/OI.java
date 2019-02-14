@@ -77,8 +77,8 @@ public OI(){
     o6.whenPressed(new GetToLevel3());
     o7.whenPressed(new OperatorLift());
     
-    d2.whileHeld(new CenterTarget());
 
+    d2.whileHeld(new CenterTarget());
     d3.whileHeld(new ManualWinchDown());
     d4.whileHeld(new ManualWinchUp());
     d5.whileHeld(new LevelClimb());
