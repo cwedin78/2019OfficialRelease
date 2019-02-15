@@ -67,21 +67,21 @@ public OI(){
     o12 = new JoystickButton(operator, 12);
 
     
-    o11.whenPressed(new CargoCargo());
-    o12.whenPressed(new RocketCargo());    
+ //   o11.whenPressed(new CargoCargo());
+ //   o12.whenPressed(new RocketCargo());    
 
 
     o1.whenPressed(new EjectHatch());
-    o2.whenPressed(new ApproachLevelOne());
-    o5.whenPressed(new ApproachLevelTwo());
-    o6.whenPressed(new GetToLevel3());
+ //   o2.whenPressed(new ApproachLevelOne());
+ //   o5.whenPressed(new ApproachLevelTwo());
+ //   o6.whenPressed(new GetToLevel3());
     o7.whenPressed(new OperatorLift());
     
 
-    d2.whileHeld(new CenterTarget());
+ //   d2.whileHeld(new CenterTarget());
     d3.whileHeld(new ManualWinchDown());
     d4.whileHeld(new ManualWinchUp());
-    d5.whileHeld(new LevelClimb());
+ //   d5.whileHeld(new LevelClimb());
     
   }
 

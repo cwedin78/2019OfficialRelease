@@ -41,10 +41,10 @@ public ManualArm() {
     }
 
   if(Robot.m_oi.operator.getRawButton(3) && Robot.arm.spiked.get() < Robot.arm.stalltime){
-      Robot.arm.intake.set(-1);
+      Robot.arm.intake.set(1);
     }
     else if (Robot.m_oi.operator.getRawButton(4)){
-      Robot.arm.intake.set(1);
+      Robot.arm.intake.set(.6);
     }
     else{
       Robot.arm.intake.set(0);
