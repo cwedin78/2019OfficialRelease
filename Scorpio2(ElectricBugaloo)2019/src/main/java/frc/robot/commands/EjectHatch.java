@@ -23,8 +23,8 @@ public class EjectHatch extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    highspeed = 1;
-    recoveryspeed = .7;
+    highspeed = .75;
+    recoveryspeed = .5;
     resetspeed = .05;
     endhigh = 1316;
     endrecovery = 2168;
