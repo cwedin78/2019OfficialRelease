@@ -82,9 +82,9 @@ public OI(){
     o7.whenReleased(new StopLift());
     
 
- //   d2.whileHeld(new CenterTarget());
-      d3.whileHeld(new ManualWinch());
- //   d4.whileHeld(new LevelClimb());
+ // d2.whileHeld(new CenterTarget());
+    d3.whileHeld(new ManualWinch());
+ // d4.whileHeld(new LevelClimb());
     
   }
 

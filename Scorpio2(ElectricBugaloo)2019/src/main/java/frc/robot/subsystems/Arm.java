@@ -35,6 +35,9 @@ public class Arm extends Subsystem {
   public Arm() {
 
   armMotor = new WPI_TalonSRX(6);
+  
+  armMotor.setInverted(true);
+
   intake = new WPI_TalonSRX(7);
   armEncoder = new Encoder(0, 1, false);
 
