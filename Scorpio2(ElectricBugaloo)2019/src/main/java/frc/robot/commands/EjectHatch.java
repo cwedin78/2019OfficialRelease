@@ -24,9 +24,9 @@ public class EjectHatch extends Command {
   @Override
   protected void initialize() {
     highspeed = .75;
-    recoveryspeed = .5;
+    recoveryspeed = .2;
     resetspeed = .05;
-    endhigh = 1316;
+    endhigh = 564;
     endrecovery = 2168;
     stopticks = 2256;
 
