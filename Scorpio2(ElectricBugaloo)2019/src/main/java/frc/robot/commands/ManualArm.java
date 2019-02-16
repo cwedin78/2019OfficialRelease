@@ -39,7 +39,7 @@ public ManualArm() {
       Robot.arm.spiked.stop();
       Robot.arm.spiked.reset();
     }
-
+ 
   if(Robot.m_oi.operator.getRawButton(3) && Robot.arm.spiked.get() < Robot.arm.stalltime){
       Robot.arm.intake.set(Robot.arm.suck);
     }
