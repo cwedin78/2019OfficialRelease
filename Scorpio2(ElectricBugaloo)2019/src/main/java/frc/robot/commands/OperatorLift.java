@@ -28,26 +28,33 @@ public class OperatorLift extends Command {
   @Override
   protected void execute() {
     double speed = Robot.lift.GiveThrottle(0.3, Robot.m_oi.operator, false);
+
+    Robot.lift.lift.set(speed);
     
-    if(speed > 0){
-      if (Robot.lift.liftencoder.getPosition() > Robot.lift.top || Robot.lift.upperlimit.get()){
+  /*  if(speed > 0){
+      if (Robot.lift.liftencoder.getPosition() > Robot.lift.top){ //|| Robot.lift.upperlimit.get()){
       Robot.lift.lift.set(0);
       }
       else {
         Robot.lift.lift.set(speed);
       }
     }
-    else {
-      if(Robot.lift.liftencoder.getPosition() < Robot.lift.bottom || Robot.lift.lowerlimit.get()){
+    else if (speed < 0) {
+      if(Robot.lift.liftencoder.getPosition() < Robot.lift.bottom){//{ || Robot.lift.lowerlimit.get()){
         Robot.lift.lift.set(0);
       }
       else {
         Robot.lift.lift.set(speed);
       }
     }
+    else {
+      Robot.lift.lift.set(speed);
+    }
+    */
+    }
 
 
-  }
+  
 
   // Make this return true when this Command no longer needs to run execute()
   @Override

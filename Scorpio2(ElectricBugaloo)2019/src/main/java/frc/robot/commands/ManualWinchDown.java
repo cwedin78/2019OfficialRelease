@@ -30,7 +30,7 @@ public class ManualWinchDown extends Command {
       Robot.winch.winchMotor.set(0);
     }
     else {
-      Robot.winch.winchMotor.set(-.2);
+      Robot.winch.winchMotor.set(-.8);
     }
 
   }

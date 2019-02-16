@@ -30,7 +30,7 @@ public ManualArm() {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double armspeed = Robot.arm.CalculateControllerValue(.3, .1, 1, Robot.m_oi.operator, true, "Y");
+    double armspeed = Robot.arm.CalculateControllerValue(.3, .1, 1, Robot.m_oi.operator, false, "Y");
 
     if(Robot.pdp.board.getCurrent(8) > Robot.arm.stallvalue){
       Robot.arm.spiked.start();
@@ -41,10 +41,10 @@ public ManualArm() {
     }
 
   if(Robot.m_oi.operator.getRawButton(3) && Robot.arm.spiked.get() < Robot.arm.stalltime){
-      Robot.arm.intake.set(-1);
+      Robot.arm.intake.set(.5);
     }
     else if (Robot.m_oi.operator.getRawButton(4)){
-      Robot.arm.intake.set(1);
+      Robot.arm.intake.set(-1);
     }
     else{
       Robot.arm.intake.set(0);
