@@ -29,7 +29,7 @@ public class Arm extends Subsystem {
   
   public DigitalInput limitArmOne, limitArmTwo;
 
-  public double value, last_error, stallvalue, stalltime, botlimit, groundlimit, anglep, angled;
+  public double value, last_error, stallvalue, stalltime, botlimit, groundlimit, anglep, angled, suck, shoot;
 
 
   public Arm() {
@@ -49,6 +49,9 @@ public class Arm extends Subsystem {
 
   anglep = 0.007;
   angled = 0.001;
+
+  suck = 0.35;
+  shoot = -1;
   }
 
 
@@ -81,15 +84,13 @@ public double PIDSpeed(double kP, double kD, double error){
  * configures a controller input throught the X,Y, or Z axes, and combines them with the throttle.
  * This creates a precise control with the use of deadzones and a precision scale.
  * @param deadzone (make it so a simple touch doesn't do anything)
- * @param minimumscale (the slowest you want things to go)
- * @param maximumscale (the fastest)
  * @param controllertype (which controller are you using)
  * @param controllerinput (It's either "X", "Y", or "Z" for the three axes on a controller. Use caps, and put quotes) If X, Y, or Z are not chosen, it is defaulted to Z
  * @param inverted (whether or not you need to flip the controller input)
  */
 
 
-public double CalculateControllerValue(double deadzone, double minimumscale, double maximumscale, Joystick controllertype, boolean inverted, String controllerinput ){
+public double CalculateControllerValue(double deadzone, Joystick controllertype, boolean inverted, String controllerinput ){
   double input;
   double returnvalue;
 
@@ -106,22 +107,15 @@ if(inverted){
   input = input * -1;
 }
 //this is drive code
-boolean pTrig = controllertype.getTrigger();
-double pMag = (controllertype.getThrottle() +1) /2;
-double pScale;
 
 //DZ
-if (pTrig){
-  pScale = 1;
-}
-else{
-  pScale = (pMag * (maximumscale - minimumscale) + minimumscale);
-}
+
+
 if (Math.abs(input)< deadzone){
   returnvalue = 0;
 }
 else{
-  returnvalue = Math.signum(input) * pScale * ((Math.abs(input) - deadzone) *(1/(1 - deadzone)));
+  returnvalue = Math.signum(input) * ((Math.abs(input) - deadzone) *(1/(1 - deadzone)));
 }
 return returnvalue;
 }

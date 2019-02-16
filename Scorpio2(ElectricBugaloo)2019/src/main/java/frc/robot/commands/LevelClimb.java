@@ -34,7 +34,7 @@ public class LevelClimb extends Command {
   protected void execute() {
     double speed = Robot.winch.PIDSpeed(kP, kD, Robot.winch.navx.getRoll());
 
-    Robot.arm.armMotor.set(Robot.arm.CalculateControllerValue(0.3, 0.1, 1, Robot.m_oi.operator, true, "Y"));
+    Robot.arm.armMotor.set(Robot.arm.CalculateControllerValue(0.3, Robot.m_oi.operator, true, "Y"));
 
     if(Robot.winch.winchEncoder.get() <= Robot.winch.lowlimit && speed < 0){
       Robot.winch.winchMotor.set(0);
