@@ -77,7 +77,7 @@ public OI(){
  //   o2.whenPressed(new ApproachLevelOne());
  //   o5.whenPressed(new ApproachLevelTwo());
  //   o6.whenPressed(new GetToLevel3());
-    o7.whenPressed(new OperatorLift());
+    o7.whileHeld(new OperatorLift());
     
 
  //   d2.whileHeld(new CenterTarget());

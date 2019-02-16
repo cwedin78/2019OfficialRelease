@@ -59,12 +59,13 @@ public class OperatorLift extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return !Robot.m_oi.o7.get();
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.lift.lift.set(0);
   }
 
   // Called when another command which requires one or more of the same
