@@ -7,15 +7,12 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class ManualArm extends Command {
-  public Timer spikedtime;
-public ManualArm() {
-  requires(Robot.arm);
-  requires(Robot.pdp);
+public class StopLift extends Command {
+  public StopLift() {
+    requires(Robot.lift);
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -23,42 +20,12 @@ public ManualArm() {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-
-    spikedtime = new Timer();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double armspeed = Robot.arm.CalculateControllerValue(.3, Robot.m_oi.operator, false, "Y");
-
-    if(Robot.pdp.board.getCurrent(8) > Robot.arm.stallvalue){
-      Robot.arm.spiked.start();
-    }
-    else {
-      Robot.arm.spiked.stop();
-      Robot.arm.spiked.reset();
-    }
-
-  if(Robot.m_oi.operator.getRawButton(3) && Robot.arm.spiked.get() < Robot.arm.stalltime){
-      Robot.arm.intake.set(Robot.arm.suck);
-    }
-    else if (Robot.m_oi.operator.getRawButton(4)){
-      Robot.arm.intake.set(Robot.arm.shoot);
-    }
-    else{
-      Robot.arm.intake.set(0);
-
-    } 
-    if(armspeed < 0 && Robot.arm.armEncoder.get() <= Robot.arm.botlimit){
-      Robot.arm.armMotor.set(0);
-    }
-    else if (armspeed > 0 && Robot.arm.armEncoder.get() >= Robot.arm.groundlimit){
-      Robot.arm.armMotor.set(0);
-    }
-    else{
-    Robot.arm.armMotor.set(armspeed);
-    }
+    Robot.lift.lift.set(0);
   }
 
   // Make this return true when this Command no longer needs to run execute()

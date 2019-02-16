@@ -9,9 +9,11 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.commands.CargoCargo;
 import frc.robot.commands.ManualArm;
 import frc.robot.commands.RocketCargo;
+import frc.robot.commands.StopLift;
 import frc.robot.commands.stopHatch;
 import frc.robot.commands.ApproachLevelOne;
 import frc.robot.commands.ApproachLevelTwo;
@@ -77,7 +79,8 @@ public OI(){
  //   o2.whenPressed(new ApproachLevelOne());
  //   o5.whenPressed(new ApproachLevelTwo());
  //   o6.whenPressed(new GetToLevel3());
-    o7.whenPressed(new OperatorLift());
+    o7.whileHeld(new OperatorLift());
+    o7.whenReleased(new StopLift());
     
 
  //   d2.whileHeld(new CenterTarget());
