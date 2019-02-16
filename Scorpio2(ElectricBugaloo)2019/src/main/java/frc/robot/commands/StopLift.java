@@ -10,9 +10,8 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class OperatorLift extends Command {
-  public OperatorLift() {
-
+public class StopLift extends Command {
+  public StopLift() {
     requires(Robot.lift);
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -21,40 +20,13 @@ public class OperatorLift extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double speed = Robot.lift.GiveThrottle(0.3, Robot.m_oi.operator, false);
-
-    Robot.lift.lift.set(speed);
-    
-  /*  if(speed > 0){
-      if (Robot.lift.liftencoder.getPosition() > Robot.lift.top){ //|| Robot.lift.upperlimit.get()){
-      Robot.lift.lift.set(0);
-      }
-      else {
-        Robot.lift.lift.set(speed);
-      }
-    }
-    else if (speed < 0) {
-      if(Robot.lift.liftencoder.getPosition() < Robot.lift.bottom){//{ || Robot.lift.lowerlimit.get()){
-        Robot.lift.lift.set(0);
-      }
-      else {
-        Robot.lift.lift.set(speed);
-      }
-    }
-    else {
-      Robot.lift.lift.set(speed);
-    }
-    */
-    }
-
-
-  
+    Robot.lift.lift.set(0);
+  }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
@@ -65,7 +37,6 @@ public class OperatorLift extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.lift.lift.set(0);
   }
 
   // Called when another command which requires one or more of the same
