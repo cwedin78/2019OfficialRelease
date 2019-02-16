@@ -23,7 +23,7 @@ public class Elevator extends Subsystem {
 
 public DigitalInput lowerlimit, upperlimit;
 
-public double value, last_error, controlDZ, bottom, top;
+public double value, last_error, controlDZ, bottom, top, Up, Ud, Dp, Dd;
 
 public CANSparkMax lift;
 
@@ -42,7 +42,13 @@ public CANEncoder liftencoder;
     
     controlDZ = 0.3;
     bottom = -0.5;
-    top = 93;
+    top = 85.5;
+
+    Up = 0.06;
+    Ud = 0.015;
+
+    Dp = 0.01;
+    Ud = 0.009;
   }
 
 

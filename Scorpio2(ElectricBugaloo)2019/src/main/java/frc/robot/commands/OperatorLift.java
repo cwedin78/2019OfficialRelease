@@ -29,9 +29,9 @@ public class OperatorLift extends Command {
   protected void execute() {
     double speed = Robot.lift.GiveThrottle(0.3, Robot.m_oi.operator, false);
 
-    Robot.lift.lift.set(speed);
+  //  Robot.lift.lift.set(speed);
     
-  /*  if(speed > 0){
+    if(speed > 0){
       if (Robot.lift.liftencoder.getPosition() > Robot.lift.top){ //|| Robot.lift.upperlimit.get()){
       Robot.lift.lift.set(0);
       }
@@ -47,10 +47,8 @@ public class OperatorLift extends Command {
         Robot.lift.lift.set(speed);
       }
     }
-    else {
-      Robot.lift.lift.set(speed);
-    }
-    */
+    else {}
+    
     }
 
 

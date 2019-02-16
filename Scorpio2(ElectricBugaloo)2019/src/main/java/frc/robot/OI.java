@@ -77,9 +77,9 @@ public OI(){
 
     o1.whenPressed(new EjectHatch());
     o1.whenReleased(new stopHatch());
- //   o2.whenPressed(new ApproachLevelOne());
- //   o5.whenPressed(new ApproachLevelTwo());
- //   o6.whenPressed(new GetToLevel3());
+    o2.whenPressed(new ApproachLevelOne());
+    o5.whenPressed(new ApproachLevelTwo());
+    o6.whenPressed(new GetToLevel3());
     o7.whileHeld(new OperatorLift());
     o7.whenReleased(new StopLift());
 

@@ -24,6 +24,7 @@ public class HatchRelease extends Subsystem {
   public HatchRelease(){
 
     thrower = new WPI_TalonSRX(9);
+    thrower.setInverted(true);
 
     roter = new Encoder(2, 3, false);
 
