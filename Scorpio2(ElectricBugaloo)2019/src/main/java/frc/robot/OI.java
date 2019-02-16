@@ -20,8 +20,7 @@ import frc.robot.commands.EjectHatch;
 import frc.robot.commands.GetToLevel3;
 import frc.robot.commands.OperatorLift;
 import frc.robot.commands.LevelClimb;
-import frc.robot.commands.ManualWinchDown;
-import frc.robot.commands.ManualWinchUp;
+import frc.robot.commands.ManualWinch;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -81,9 +80,8 @@ public OI(){
     
 
  //   d2.whileHeld(new CenterTarget());
-    d3.whileHeld(new ManualWinchDown());
-    d4.whileHeld(new ManualWinchUp());
- //   d5.whileHeld(new LevelClimb());
+      d3.whileHeld(new ManualWinch());
+ //   d4.whileHeld(new LevelClimb());
     
   }
 

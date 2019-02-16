@@ -36,21 +36,14 @@ public class LevelClimb extends Command {
 
     Robot.arm.armMotor.set(Robot.arm.CalculateControllerValue(0.3, 0.1, 1, Robot.m_oi.operator, true, "Y"));
 
-    if(Robot.winch.winchEncoder.get() <= Robot.winch.lowlimit && speed < 0){
-      Robot.winch.winchMotor.set(0);
-    }
-    else if (Robot.winch.winchEncoder.get() >= Robot.winch.highlimit && speed > 0){
-      Robot.winch.winchMotor.set(0);
-    }
-    else{
     Robot.winch.winchMotor.set(speed);
     }
-  }
+  
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return Robot.winch.winchEncoder.get() <= Robot.winch.lowlimit && Robot.winch.PIDSpeed(kP, kD, Robot.winch.navx.getRoll()) < 0 || Robot.winch.winchEncoder.get() >= Robot.winch.highlimit && Robot.winch.PIDSpeed(kP, kD, Robot.winch.navx.getRoll()) > 0;
   }
 
   // Called once after isFinished returns true

@@ -10,8 +10,8 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class ManualWinchUp extends Command {
-  public ManualWinchUp() {
+public class ManualWinch extends Command {
+  public ManualWinch() {
     requires(Robot.winch);
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -26,19 +26,15 @@ public class ManualWinchUp extends Command {
   @Override
   protected void execute() {
 
-    if(Robot.winch.winchEncoder.get() >= Robot.winch.highlimit){
-      Robot.winch.winchMotor.set(0);
-    }
-    else {
-      Robot.winch.winchMotor.set(.8);
-    }
+
+    Robot.winch.winchMotor.set(Robot.winch.GiveThrottle(0.3, Robot.m_oi.driver, false));
 
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return Robot.winch.winchEncoder.get() >= Robot.winch.highlimit || !Robot.m_oi.driver.getRawButton(4);
+    return !Robot.m_oi.driver.getRawButton(4);
   }
 
   // Called once after isFinished returns true
