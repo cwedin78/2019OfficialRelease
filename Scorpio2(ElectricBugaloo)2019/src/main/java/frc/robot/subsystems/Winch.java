@@ -76,6 +76,35 @@ public double PIDSpeed(double kP, double kD, double error){
   }
 }
 
+/**
+ * Modified from calculatecontrollervalue, this method simply has deadzones for your throttle for more precise control
+ * @param deadzone (make it so a simple touch doesn't do anything)
+ * @param controllertype (which controller are you using)
+ * @param inverted (whether or not you need to flip the controller input)
+ */
+
+
+public double GiveThrottle(double deadzone, Joystick controllertype, boolean inverted){
+  double input;
+  double returnvalue;
+
+input = controllertype.getThrottle();
+  
+if(inverted){
+  input = input * -1;
+}
+
+//DZ
+
+if (Math.abs(input)< deadzone){
+  returnvalue = 0;
+}
+else{
+  returnvalue = Math.signum(input) * ((Math.abs(input) - deadzone) *(1/1 - deadzone));
+}
+return returnvalue;
+}
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
