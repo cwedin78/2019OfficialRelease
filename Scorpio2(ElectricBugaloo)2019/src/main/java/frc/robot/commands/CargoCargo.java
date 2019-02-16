@@ -33,7 +33,7 @@ public CargoCargo() {
   @Override
   protected void execute() {
 
-        error = 125 - Robot.arm.armEncoder.get();
+        error = 285 - Robot.arm.armEncoder.get();
 
     double armspeed = Robot.arm.PIDSpeed(kP, kD, error);
 

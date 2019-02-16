@@ -69,8 +69,7 @@ public OI(){
     o12 = new JoystickButton(operator, 12);
 
     
- //   o11.whenPressed(new CargoCargo());
- //   o12.whenPressed(new RocketCargo());    
+
 
 
     o1.whenPressed(new EjectHatch());
@@ -80,7 +79,8 @@ public OI(){
  //   o6.whenPressed(new GetToLevel3());
     o7.whileHeld(new OperatorLift());
     o7.whenReleased(new StopLift());
-    
+    o11.whenPressed(new CargoCargo());
+ //   o12.whenPressed(new RocketCargo());    
 
  // d2.whileHeld(new CenterTarget());
     d3.whileHeld(new ManualWinch());
