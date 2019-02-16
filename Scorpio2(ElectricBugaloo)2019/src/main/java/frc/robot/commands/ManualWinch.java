@@ -34,7 +34,7 @@ public class ManualWinch extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return !Robot.m_oi.driver.getRawButton(4);
+    return !Robot.m_oi.driver.getRawButton(3);
   }
 
   // Called once after isFinished returns true
