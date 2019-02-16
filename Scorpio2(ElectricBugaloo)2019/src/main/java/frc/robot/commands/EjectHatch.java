@@ -12,7 +12,7 @@ import frc.robot.Robot;
 
 public class EjectHatch extends Command {
 
-  public double highspeed, recoveryspeed, resetspeed, endhigh, endrecovery, stopticks;
+  public double highspeed, recoveryspeed, resetspeed, endhigh, endrecovery, stopticks, kp, kd, error;
   
   public EjectHatch() {
     requires(Robot.release);
@@ -23,32 +23,39 @@ public class EjectHatch extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    highspeed = .75;
+    highspeed = 1;
     recoveryspeed = .2;
     resetspeed = .05;
-    endhigh = 564;
-    endrecovery = 2168;
-    stopticks = 2256;
+    endhigh = 70;
+    endrecovery = 140;
+    stopticks = 214;
 
+    kp =  0.02;
+    kd = 0.003;
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.release.thrower.set(Robot.release.ejectspeed(Robot.release.roter, highspeed, recoveryspeed, resetspeed, endhigh, endrecovery, stopticks));
+
+    error = stopticks - Robot.release.roter.get();
+
+    //Robot.release.thrower.set(Robot.release.ejectspeed(Robot.release.roter, highspeed, recoveryspeed, resetspeed, endhigh, endrecovery, stopticks));
+    Robot.release.thrower.set(Robot.release.PIDSpeed(kp, kd, error));
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return Robot.release.roter.get() >= stopticks;
-  }
+
+    return Math.abs(error) < 2;
+    }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
     Robot.release.thrower.set(0);
-    Robot.release.roter.reset();
+   // Robot.release.roter.reset();
   }
 
   // Called when another command which requires one or more of the same

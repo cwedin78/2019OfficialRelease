@@ -21,10 +21,12 @@ public class HatchRelease extends Subsystem {
 
   public Encoder roter;
 
+  public double value, last_error;
+
   public HatchRelease(){
 
     thrower = new WPI_TalonSRX(9);
-    thrower.setInverted(true);
+    thrower.setInverted(false);
 
     roter = new Encoder(2, 3, false);
 
@@ -56,6 +58,33 @@ public double ejectspeed(Encoder source, double highSpeed, double recSpeed, doub
       return 0;
     }
 }
+
+/**
+ * This is a manual pid loop where you can set the P and D values
+ * @param kP (the coefficients for the proportional part of PID)
+ * @param kD (the coefficients for the derivative part of PID)
+ * @param error (the source of error for the PID loop)
+ * 
+ */
+public double PIDSpeed(double kP, double kD, double error){
+
+
+  value = (kP * error) + (kD * (error - last_error) / 0.05);
+
+  last_error = error;
+
+  if (value > 1){
+    return 1;
+  }
+  else if (value < -1){
+    return -1;
+  }
+  else {
+ return value;
+  }
+}
+
+
 
   // Put methods for controlling this subsystem
   // here. Call these from Commands.

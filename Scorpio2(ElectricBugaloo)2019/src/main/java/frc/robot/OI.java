@@ -15,15 +15,19 @@ import frc.robot.commands.ManualArm;
 import frc.robot.commands.RocketCargo;
 import frc.robot.commands.StopLift;
 import frc.robot.commands.StraightArm;
+import frc.robot.commands.leaveStation;
 import frc.robot.commands.stopHatch;
 import frc.robot.commands.ApproachLevelOne;
 import frc.robot.commands.ApproachLevelTwo;
 import frc.robot.commands.ArmZero;
 import frc.robot.commands.CenterTarget;
+import frc.robot.commands.DriveRelease;
 import frc.robot.commands.EjectHatch;
+import frc.robot.commands.FullRelease;
 import frc.robot.commands.GetToLevel3;
 import frc.robot.commands.GroundCargo;
 import frc.robot.commands.OperatorLift;
+import frc.robot.commands.ResetCam;
 import frc.robot.commands.LevelClimb;
 import frc.robot.commands.ManualWinch;
 
@@ -71,18 +75,15 @@ public OI(){
     o11 = new JoystickButton(operator, 11);
     o12 = new JoystickButton(operator, 12);
 
-    
 
-
-
-    o1.whenPressed(new EjectHatch());
-    o1.whenReleased(new stopHatch());
+    o1.whenPressed(new leaveStation());
     o2.whenPressed(new ApproachLevelOne());
     o5.whenPressed(new ApproachLevelTwo());
     o6.whenPressed(new GetToLevel3());
     o7.whileHeld(new OperatorLift());
     o7.whenReleased(new StopLift());
 
+    o8.whileHeld(new ResetCam());
     o9.whenPressed(new StraightArm());
     o10.whenPressed(new GroundCargo());
     o11.whenPressed(new CargoCargo());
@@ -91,8 +92,9 @@ public OI(){
  // d2.whileHeld(new CenterTarget());
     d3.whileHeld(new ManualWinch());
  // d4.whileHeld(new LevelClimb());
-
-    d6.whenPressed(new ArmZero());
+    d5.whenPressed(new FullRelease());
+    d6.whenPressed(new DriveRelease());
+    d11.whenPressed(new ArmZero());
     
   }
 

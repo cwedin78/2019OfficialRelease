@@ -11,10 +11,10 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class stopHatch extends Command {
-  public Timer stickout;
-  public stopHatch() {
-    requires(Robot.release);
+public class RunAway extends Command {
+  public Timer gotaway;
+  public RunAway() {
+    requires(Robot.drivetrain);
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -22,22 +22,20 @@ public class stopHatch extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    stickout = new Timer();
-    stickout.start();
+    gotaway = new Timer();
+    gotaway.start();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-
-    Robot.release.thrower.set(0);
+    Robot.drivetrain.inputdrive(.75, 0);
   }
-
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return stickout.get() > .4;
+    return gotaway.get() > 0.33;
   }
 
   // Called once after isFinished returns true
