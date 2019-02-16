@@ -10,11 +10,11 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class GroundCargo extends Command {
+public class ArmZero extends Command {
     
 public double kP, kD;
 public int error;
-public GroundCargo() {
+public ArmZero() {
     
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -33,7 +33,7 @@ public GroundCargo() {
   @Override
   protected void execute() {
 
-        error = 1015 - Robot.arm.armEncoder.get();
+        error = 0 - Robot.arm.armEncoder.get();
 
     double armspeed = Robot.arm.PIDSpeed(kP, kD, error);
 

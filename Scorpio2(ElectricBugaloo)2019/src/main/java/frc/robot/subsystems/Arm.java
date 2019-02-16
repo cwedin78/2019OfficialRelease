@@ -48,7 +48,7 @@ public class Arm extends Subsystem {
 
 
   groundlimit = 1439;
-  botlimit = -5;
+  botlimit = -1;
 
   anglep = 0.007;
   angled = 0.001;

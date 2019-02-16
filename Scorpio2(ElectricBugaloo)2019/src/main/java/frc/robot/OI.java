@@ -14,12 +14,15 @@ import frc.robot.commands.CargoCargo;
 import frc.robot.commands.ManualArm;
 import frc.robot.commands.RocketCargo;
 import frc.robot.commands.StopLift;
+import frc.robot.commands.StraightArm;
 import frc.robot.commands.stopHatch;
 import frc.robot.commands.ApproachLevelOne;
 import frc.robot.commands.ApproachLevelTwo;
+import frc.robot.commands.ArmZero;
 import frc.robot.commands.CenterTarget;
 import frc.robot.commands.EjectHatch;
 import frc.robot.commands.GetToLevel3;
+import frc.robot.commands.GroundCargo;
 import frc.robot.commands.OperatorLift;
 import frc.robot.commands.LevelClimb;
 import frc.robot.commands.ManualWinch;
@@ -79,12 +82,17 @@ public OI(){
  //   o6.whenPressed(new GetToLevel3());
     o7.whileHeld(new OperatorLift());
     o7.whenReleased(new StopLift());
+
+    o9.whenPressed(new StraightArm());
+    o10.whenPressed(new GroundCargo());
     o11.whenPressed(new CargoCargo());
  //   o12.whenPressed(new RocketCargo());    
 
  // d2.whileHeld(new CenterTarget());
     d3.whileHeld(new ManualWinch());
  // d4.whileHeld(new LevelClimb());
+
+    d6.whenPressed(new ArmZero());
     
   }
 
