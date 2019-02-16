@@ -132,6 +132,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("lift speed", Robot.lift.lift.get());
     SmartDashboard.putNumber("lift position", Robot.lift.liftencoder.getPosition());
     SmartDashboard.putNumber("Roll", Robot.winch.navx.getRoll());
+    SmartDashboard.putNumber("Pitch", Robot.winch.navx.getPitch());
     SmartDashboard.putNumber("winch encoder", Robot.winch.winchEncoder.get());
     SmartDashboard.putNumber("armEncoder", Robot.arm.armEncoder.get());
     SmartDashboard.putNumber("anglespeed", Robot.arm.armMotor.get());
@@ -166,6 +167,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("lift speed", Robot.lift.lift.get());
     SmartDashboard.putNumber("lift position", Robot.lift.liftencoder.getPosition());
     SmartDashboard.putNumber("Roll", Robot.winch.navx.getRoll());
+    SmartDashboard.putNumber("Pitch", Robot.winch.navx.getPitch());
     SmartDashboard.putNumber("winch encoder", Robot.winch.winchEncoder.get());
     SmartDashboard.putNumber("armEncoder", Robot.arm.armEncoder.get());
     SmartDashboard.putNumber("anglespeed", Robot.arm.armMotor.get());

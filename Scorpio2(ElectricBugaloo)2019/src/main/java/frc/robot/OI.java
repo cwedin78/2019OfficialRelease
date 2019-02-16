@@ -90,7 +90,7 @@ public OI(){
 
  // d2.whileHeld(new CenterTarget());
     d3.whileHeld(new ManualWinch());
- // d4.whileHeld(new LevelClimb());
+    d4.whileHeld(new LevelClimb());
 
     d6.whenPressed(new ArmZero());
     
