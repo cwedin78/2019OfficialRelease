@@ -135,7 +135,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("winch encoder", Robot.winch.winchEncoder.get());
     SmartDashboard.putNumber("armEncoder", Robot.arm.armEncoder.get());
     SmartDashboard.putNumber("anglespeed", Robot.arm.armMotor.get());
-    SmartDashboard.putNumber("release encoder", Robot.release.roter.get());
+    SmartDashboard.putNumber("cam encoder", Robot.release.roter.get());
     SmartDashboard.putBoolean("lift top limit?", Robot.lift.upperlimit.get());
     SmartDashboard.putBoolean("lift bottom limit?", Robot.lift.lowerlimit.get());
 
@@ -169,7 +169,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("winch encoder", Robot.winch.winchEncoder.get());
     SmartDashboard.putNumber("armEncoder", Robot.arm.armEncoder.get());
     SmartDashboard.putNumber("anglespeed", Robot.arm.armMotor.get());
-    SmartDashboard.putNumber("release encoder", Robot.release.roter.get());
+    SmartDashboard.putNumber("cam encoder", Robot.release.roter.get());
     SmartDashboard.putBoolean("lift top limit?", Robot.lift.upperlimit.get());
     SmartDashboard.putBoolean("lift bottom limit?", Robot.lift.lowerlimit.get());
     

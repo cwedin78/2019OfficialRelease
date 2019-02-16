@@ -10,9 +10,9 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class ManualWinchDown extends Command {
-  public ManualWinchDown() {
-    requires(Robot.winch);
+public class StopLift extends Command {
+  public StopLift() {
+    requires(Robot.lift);
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -25,32 +25,23 @@ public class ManualWinchDown extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-
-    if(Robot.winch.winchEncoder.get() <= Robot.winch.lowlimit){
-      Robot.winch.winchMotor.set(0);
-    }
-    else {
-      Robot.winch.winchMotor.set(-.8);
-    }
-
+    Robot.lift.lift.set(0);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return Robot.winch.winchEncoder.get() <= Robot.winch.lowlimit || !Robot.m_oi.driver.getRawButton(3);
+    return false;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.winch.winchMotor.set(0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Robot.winch.winchMotor.set(0);
   }
 }

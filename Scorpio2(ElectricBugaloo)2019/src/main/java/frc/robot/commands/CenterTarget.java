@@ -32,7 +32,7 @@ public CenterTarget() {
   @Override
   protected void execute() {
 
-    forward = Robot.drivetrain.CalculateControllerValue(.3, .25, .75, Robot.m_oi.driver, true, "Y");
+    forward = Robot.drivetrain.CalculateControllerValue(.3, Robot.m_oi.driver, true, "Y");
 
     correction = Robot.drivetrain.PIDSpeed(kP, kD, Robot.limelight.tx.getDouble(0.0));
 
