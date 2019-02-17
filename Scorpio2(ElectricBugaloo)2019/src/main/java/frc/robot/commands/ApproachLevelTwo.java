@@ -41,12 +41,8 @@ public class ApproachLevelTwo extends Command {
   double speed;
   error = setpoint - Robot.lift.liftencoder.getPosition();
 
-  if(error > 0){
- speed = Robot.lift.PIDSpeed(up, ud, error);
-  }
-  else{
- speed = Robot.lift.PIDSpeed(dp, dd, error);
-  }
+  speed = Robot.lift.PIDSpeed(up, ud, dp, dd, error);
+  
     if(speed > 0){
       if (Robot.lift.liftencoder.getPosition() > Robot.lift.top){ //|| Robot.lift.upperlimit.get()){
       Robot.lift.lift.set(0);

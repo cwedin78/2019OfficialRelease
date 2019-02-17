@@ -54,16 +54,23 @@ public CANEncoder liftencoder;
 
   /**
  * This is a manual pid loop where you can set the P and D values
- * @param kP (the coefficients for the proportional part of PID)
- * @param kD (the coefficients for the derivative part of PID)
+ * @param uP (the coefficients for the proportional part of PID) (when error > 0)
+ * @param uD (the coefficients for the derivative part of PID) (when error > 0)
+ * @param uP (the coefficients for the proportional part of PID) (when error < 0)
+ * @param uD (the coefficients for the derivative part of PID) (when error < 0)
  * @param error (the source of error for the PID loop)
  * 
  */
-public double PIDSpeed(double kP, double kD, double error){
+public double PIDSpeed(double uP, double uD, double dP, double dD, double error){
 
+if (error > 0){
+    value = (uP * error) + (uD * (error - last_error) / 0.05);
 
-  value = (kP * error) + (kD * (error - last_error) / 0.05);
+}
+else{
+  value = (dP * error) + (dD * (error - last_error) / 0.05);
 
+}
   last_error = error;
 
   if (value > 1){
