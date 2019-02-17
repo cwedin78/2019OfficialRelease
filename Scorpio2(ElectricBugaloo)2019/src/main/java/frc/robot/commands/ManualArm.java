@@ -12,7 +12,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class ManualArm extends Command {
-  public Timer spikedtime;
+  public double setpoint, error, kp, kd, armspeed;
+
+  public Timer spikedtime, stable;
 public ManualArm() {
   requires(Robot.arm);
   requires(Robot.pdp);
@@ -25,17 +27,33 @@ public ManualArm() {
   protected void initialize() {
 
     spikedtime = new Timer();
+    stable = new Timer();
+    kp = Robot.arm.anglep;
+    kd = Robot.arm.angled;
+    stable.start();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(Robot.m_oi.operator.getRawButton(8)){
-      Robot.arm.armEncoder.reset();
+   
+   if(Math.abs(Robot.m_oi.operator.getY()) < 0.3){
+    if(stable.get() < 0.33){
+      armspeed = 0;
+      setpoint = Robot.arm.armEncoder.get();
     }
-    else {}
+    else {
+      error = setpoint - Robot.arm.armEncoder.get();
+    armspeed = Robot.arm.PIDSpeed(kp, kd, error);
+    }
+    
+   }
+   else{
+     armspeed = Robot.arm.CalculateControllerValue(0.3, Robot.m_oi.operator, true, "Y");
+     setpoint = Robot.arm.armEncoder.get();
+     stable.reset();
+   }
 
-    double armspeed = Robot.arm.CalculateControllerValue(.3, Robot.m_oi.operator, true, "Y");
 
     if(Robot.pdp.board.getCurrent(8) > Robot.arm.stallvalue){
       Robot.arm.spiked.start();

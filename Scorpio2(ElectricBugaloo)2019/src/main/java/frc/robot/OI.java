@@ -27,6 +27,7 @@ import frc.robot.commands.FullRelease;
 import frc.robot.commands.GetToLevel3;
 import frc.robot.commands.GroundCargo;
 import frc.robot.commands.OperatorLift;
+import frc.robot.commands.ResetArmEncoder;
 import frc.robot.commands.ResetCam;
 import frc.robot.commands.LevelClimb;
 import frc.robot.commands.ManualWinch;
@@ -82,7 +83,7 @@ public OI(){
     o6.whenPressed(new GetToLevel3());
     o7.whileHeld(new OperatorLift());
     o7.whenReleased(new StopLift());
-
+    o8.whileHeld(new ResetArmEncoder());
     o8.whileHeld(new ResetCam());
     o9.whenPressed(new StraightArm());
     o10.whenPressed(new GroundCargo());
