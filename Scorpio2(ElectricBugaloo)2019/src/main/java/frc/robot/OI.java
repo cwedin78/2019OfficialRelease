@@ -32,6 +32,7 @@ import frc.robot.commands.ResetCam;
 import frc.robot.commands.LevelClimb;
 import frc.robot.commands.ManualWinch;
 
+
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
@@ -79,12 +80,12 @@ public OI(){
 
     o1.whenPressed(new leaveStation());
     o2.whenPressed(new ApproachLevelOne());
-    o5.whenPressed(new ApproachLevelTwo());
+    o4.whenPressed(new ApproachLevelTwo());
     o6.whenPressed(new GetToLevel3());
     o7.whileHeld(new OperatorLift());
     o7.whenReleased(new StopLift());
+    o7.whileHeld(new ResetCam());
     o8.whileHeld(new ResetArmEncoder());
-    o8.whileHeld(new ResetCam());
     o9.whenPressed(new StraightArm());
     o10.whenPressed(new GroundCargo());
     o11.whenPressed(new CargoCargo());
@@ -96,6 +97,9 @@ public OI(){
     d5.whenPressed(new FullRelease());
     d6.whenPressed(new DriveRelease());
     d11.whenPressed(new ArmZero());
+
+
+ 
     
   }
 
