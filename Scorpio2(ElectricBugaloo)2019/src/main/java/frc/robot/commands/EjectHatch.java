@@ -62,5 +62,6 @@ public class EjectHatch extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+   Robot.release.thrower.set(0); 
   }
 }
