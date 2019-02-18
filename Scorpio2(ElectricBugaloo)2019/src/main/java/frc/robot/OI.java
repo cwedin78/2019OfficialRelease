@@ -91,7 +91,6 @@ public OI(){
     o7.whileHeld(new OperatorLift());
     o7.whenReleased(new StopLift());
     o7.whileHeld(new ResetCam());
-    //o8.whileHeld(new ResetArmEncoder());
     o9.whenPressed(new StraightArm());
     o10.whenPressed(new GroundCargo());
     o11.whenPressed(new CargoCargo());
@@ -102,16 +101,9 @@ public OI(){
  // d4.whileHeld(new LevelClimb());
     d5.whenPressed(new FullRelease());
     d6.whenPressed(new DriveRelease());
+    d8.whileHeld(new ResetArmEncoder());
     d11.whenPressed(new ArmZero());
 
-    if(keyboard.zero){
-       Robot.res.start();
-    }
-    else {
-      Robot.res.cancel();
-    }
-
-    
   }
 
      

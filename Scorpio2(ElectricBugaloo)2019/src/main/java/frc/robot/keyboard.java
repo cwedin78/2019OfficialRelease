@@ -22,18 +22,18 @@ public class keyboard {
         KeyListener key = new KeyListener(){
         
             @Override
-            public void keyTyped(KeyEvent VK_NUMPAD0) {
+            public void keyTyped(KeyEvent arg0) {
                 
             }
         
             @Override
-            public void keyReleased(KeyEvent VK_NUMPAD0) {
-                zero = false;
+            public void keyReleased(KeyEvent arg0) {
+                
             }
         
             @Override
-            public void keyPressed(KeyEvent VK_NUMPAD0) {
-                zero = true;
+            public void keyPressed(KeyEvent arg0) {
+                
             }
         };
         return zero;
