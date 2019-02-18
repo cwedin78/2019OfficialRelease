@@ -95,9 +95,7 @@ public OI(){
     o9.whenPressed(new StraightArm());
     o10.whenPressed(new GroundCargo());
     o11.whenPressed(new CargoCargo());
-
-  
- //   o12.whenPressed(new RocketCargo());    
+    o12.whenPressed(new RocketCargo());    
 
  // d2.whileHeld(new CenterTarget());
     d3.whileHeld(new ManualWinch());
