@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.commands.CargoCargo;
 import frc.robot.commands.ManualArm;
 import frc.robot.commands.RocketCargo;
+import frc.robot.commands.SpeedShot;
 import frc.robot.commands.StopLift;
 import frc.robot.commands.StraightArm;
 import frc.robot.commands.leaveStation;

@@ -42,7 +42,7 @@ public CANEncoder liftencoder;
     
     controlDZ = 0.3;
     bottom = -0.5;
-    top = 85.5;
+    top = 86.5;
 
     Up = 0.06;
     Ud = 0.015;
