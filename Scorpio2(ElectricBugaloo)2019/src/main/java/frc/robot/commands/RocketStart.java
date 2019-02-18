@@ -7,11 +7,16 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 
-public class ResetCam extends Command {
-  public ResetCam() {
+public class RocketStart extends Command {
+  public Timer osctime;
+
+  public double kp, kd, setpoint, error;
+  public RocketStart() {
     requires(Robot.release);
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -20,19 +25,34 @@ public class ResetCam extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    setpoint = 136;
+
+    kp = 0.05;
+    kd = 0.02;
+    osctime = new Timer();
+    osctime.start();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.release.roter.reset();
-    Robot.release.thrower.set(.1);
+    error = setpoint - Robot.release.roter.get();
+
+    Robot.release.thrower.set(Robot.release.PIDSpeed(kp, kd, error));
+  
+    if(Math.abs(error) > 5){
+      osctime.reset();
+    }
+    else{
+
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return !Robot.m_oi.driver.getRawButton(7);
+  return osctime.get() > 0.4;
+    //  return Robot.release.roter.get() > 150;
   }
 
   // Called once after isFinished returns true

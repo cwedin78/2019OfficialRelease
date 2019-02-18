@@ -45,7 +45,7 @@ public class OI {
 
 public Joystick driver, operator;
 
-public JoystickButton d1, d2, d3, d4, d5, d6, d7, d8, d9, d10, d11, d12, o1, o2, o3, o4, o5, o6, o7, o8, o9, o10, o11, o12;
+public JoystickButton d1, d2, d3, d4, d5, d6, d7, d8, d9, d10, d11, d12, o1, o2, o3, o4, o5, o6, o7, o8, o9, o10, o11, o12, du, dr, dl, dd, ou, ol, or, od;
 
 public static keyboard board;
 
@@ -91,6 +91,7 @@ public OI(){
     o6.whenPressed(new GetToLevel3());
     o7.whileHeld(new OperatorLift());
     o7.whenReleased(new StopLift());
+    
     o9.whenPressed(new StraightArm());
     o10.whenPressed(new GroundCargo());
     o11.whenPressed(new CargoCargo());
@@ -102,6 +103,7 @@ public OI(){
     d5.whenPressed(new FullRelease());
     d6.whenPressed(new DriveRelease());
     d8.whileHeld(new ResetArmEncoder());
+    d7.whileHeld(new ResetCam());
     d11.whenPressed(new ArmZero());
 
   }

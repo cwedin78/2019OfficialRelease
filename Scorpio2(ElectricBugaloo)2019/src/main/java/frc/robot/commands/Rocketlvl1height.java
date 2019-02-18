@@ -10,9 +10,13 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class ResetCam extends Command {
-  public ResetCam() {
-    requires(Robot.release);
+public class Rocketlvl1height extends Command {
+
+  public double error, up, ud, dp, dd, setpoint;
+
+  public Rocketlvl1height() {
+    requires(Robot.lift);
+
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -20,31 +24,60 @@ public class ResetCam extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    up = Robot.lift.Up;
+    ud = Robot.lift.Ud;
+
+    dp = Robot.lift.Dp;
+    dd = Robot.lift.Dd;
+
+    setpoint = 12;
+
+
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.release.roter.reset();
-    Robot.release.thrower.set(.1);
+    double speed;
+    error = setpoint - Robot.lift.liftencoder.getPosition();
+
+    speed = Robot.lift.PIDSpeed(up, ud, dp, dd, error);
+    
+  if(speed > 0){
+    if (Robot.lift.liftencoder.getPosition() > Robot.lift.top){ //|| Robot.lift.upperlimit.get()){
+    Robot.lift.lift.set(0);
+    }
+    else {
+      Robot.lift.lift.set(speed);
+    }
+  }
+  else if (speed < 0) {
+    if(Robot.lift.liftencoder.getPosition() < Robot.lift.bottom){//{ || Robot.lift.lowerlimit.get()){
+      Robot.lift.lift.set(0);
+    }
+    else {
+      Robot.lift.lift.set(speed);
+    }
+  }
+  else {}
+  
+  
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return !Robot.m_oi.driver.getRawButton(7);
+    return false;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.release.thrower.set(0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Robot.release.thrower.set(0);
   }
 }

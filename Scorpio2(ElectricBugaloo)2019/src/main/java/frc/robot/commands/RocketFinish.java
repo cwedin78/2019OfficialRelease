@@ -53,7 +53,6 @@ public class RocketFinish extends Command {
       backed.reset();
     }
     else{
-      
     }
 
   }
