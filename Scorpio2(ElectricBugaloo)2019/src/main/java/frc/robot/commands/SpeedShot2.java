@@ -9,12 +9,15 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 
-public class RunAway extends Command {
-  public Timer gotaway;
-  public RunAway() {
-    requires(Robot.drivetrain);
+public class SpeedShot2 extends Command {
+  public Timer osctime;
+
+  public double kp, kd, setpoint, error;
+  public SpeedShot2() {
+    requires(Robot.release);
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -22,30 +25,46 @@ public class RunAway extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    gotaway = new Timer();
-    gotaway.start();
+    setpoint = 152;
+
+    kp = 0.05;
+    kd = 0.02;
+    osctime = new Timer();
+    osctime.start();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.drivetrain.inputdrive(.75, 0);
+    error = setpoint - Robot.release.roter.get();
+
+    Robot.release.thrower.set(Robot.release.PIDSpeed(kp, kd, error));
+  
+    if(Math.abs(error) > 5){
+      osctime.reset();
+    }
+    else{
+
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return gotaway.get() > 0.2;
+  return osctime.get() > 0.4;
+    //  return Robot.release.roter.get() > 150;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.release.thrower.set(0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    Robot.release.thrower.set(0);
   }
 }

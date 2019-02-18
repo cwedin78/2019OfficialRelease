@@ -22,8 +22,8 @@ public CenterTarget() {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    kP = 0.02;
-    kD = 0.02;
+    kP = 0.01;
+    kD = 0.005;
     Robot.limelight.SetVisionProcessingMode(0, 0);
 
   }

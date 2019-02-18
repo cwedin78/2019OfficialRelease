@@ -40,31 +40,24 @@ public class SpeedShot extends Command {
 
     Robot.release.thrower.set(Robot.release.PIDSpeed(kp, kd, error));
   
-    if(Math.abs(error) > 5){
-      osctime.reset();
-    }
-    else{
-
-    }
+   
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-  return osctime.get() > 0.4;
+  return Robot.release.roter.get() > 85;
     //  return Robot.release.roter.get() > 150;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.release.thrower.set(0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Robot.release.thrower.set(0);
   }
 }

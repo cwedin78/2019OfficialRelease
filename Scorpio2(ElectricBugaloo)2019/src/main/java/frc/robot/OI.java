@@ -7,6 +7,9 @@
 
 package frc.robot;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
@@ -42,14 +45,16 @@ public class OI {
 
 public Joystick driver, operator;
 
-
 public JoystickButton d1, d2, d3, d4, d5, d6, d7, d8, d9, d10, d11, d12, o1, o2, o3, o4, o5, o6, o7, o8, o9, o10, o11, o12;
 
+public static keyboard board;
 
 public OI(){
 
   driver = new Joystick(0);
   operator = new Joystick(1);
+
+  board = new keyboard();
 
     d1 = new JoystickButton(driver, 1);
     d2 = new JoystickButton(driver, 2);
@@ -77,6 +82,7 @@ public OI(){
     o10 = new JoystickButton(operator, 10);
     o11 = new JoystickButton(operator, 11);
     o12 = new JoystickButton(operator, 12);
+    
 
 
     o1.whenPressed(new leaveStation());
@@ -86,24 +92,23 @@ public OI(){
     o7.whileHeld(new OperatorLift());
     o7.whenReleased(new StopLift());
     o7.whileHeld(new ResetCam());
-    o8.whileHeld(new ResetArmEncoder());
     o9.whenPressed(new StraightArm());
     o10.whenPressed(new GroundCargo());
     o11.whenPressed(new CargoCargo());
- //   o12.whenPressed(new RocketCargo());    
+    o12.whenPressed(new RocketCargo());    
 
- // d2.whileHeld(new CenterTarget());
+  //  d2.whileHeld(new CenterTarget());
     d3.whileHeld(new ManualWinch());
     d4.whileHeld(new LevelClimb());
  // d4.whileHeld(new LevelClimb());
     d5.whenPressed(new FullRelease());
     d6.whenPressed(new DriveRelease());
+    d8.whileHeld(new ResetArmEncoder());
     d11.whenPressed(new ArmZero());
 
-
- 
-    
   }
+
+     
 
  
   //// CREATING BUTTONS

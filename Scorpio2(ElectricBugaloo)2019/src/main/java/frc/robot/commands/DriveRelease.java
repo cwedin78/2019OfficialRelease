@@ -17,9 +17,11 @@ public class DriveRelease extends CommandGroup {
   public DriveRelease() {
     requires(Robot.drivetrain);
     requires(Robot.release);
-
+    
+  
     addSequential(new SpeedShot());
     addParallel(new RunAway());
+    addSequential(new SpeedShot2());
     addSequential(new EjectHatch());
     
     // Add Commands here:
