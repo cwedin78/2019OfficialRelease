@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class ApproachLevelOne extends Command {
-  public double error, kp, kd;
+  public double error, up, ud, dp, dd;
   public ApproachLevelOne() {
     requires(Robot.lift);
     // Use requires() here to declare subsystem dependencies
@@ -21,9 +21,11 @@ public class ApproachLevelOne extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    up = Robot.lift.Up;
+    ud = Robot.lift.Ud;
 
-    kp = 0.01;
-    kd = 0.003;
+    dp = Robot.lift.Dp;
+    dd = Robot.lift.Dd;
 
 
   }
@@ -31,26 +33,30 @@ public class ApproachLevelOne extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    double speed;
+
     error = -1 * Robot.lift.liftencoder.getPosition();
 
-    double speed = Robot.lift.PIDSpeed(kp, kd, error);
-  
-  if(speed > 0){
-    if (Robot.lift.liftencoder.getPosition() > Robot.lift.top || Robot.lift.upperlimit.get()){
-    Robot.lift.lift.set(0);
-    }
-    else {
-      Robot.lift.lift.set(speed);
-    }
-  }
-  else {
-    if(Robot.lift.liftencoder.getPosition() < Robot.lift.bottom || Robot.lift.lowerlimit.get()){
+   speed = Robot.lift.PIDSpeed(up, ud, dp, dd, error);
+   
+    if(speed > 0){
+      if (Robot.lift.liftencoder.getPosition() > Robot.lift.top){ //|| Robot.lift.upperlimit.get()){
       Robot.lift.lift.set(0);
+      }
+      else {
+        Robot.lift.lift.set(speed);
+      }
     }
-    else {
-      Robot.lift.lift.set(speed);
-     }
-     } 
+    else if (speed < 0) {
+      if(Robot.lift.liftencoder.getPosition() < Robot.lift.bottom){//{ || Robot.lift.lowerlimit.get()){
+        Robot.lift.lift.set(0);
+      }
+      else {
+        Robot.lift.lift.set(speed);
+      }
+    }
+    else {}
+    
   }
   
   

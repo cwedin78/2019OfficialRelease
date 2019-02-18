@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.ResetArmEncoder;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.ExampleSubsystem;
@@ -39,6 +40,7 @@ public class Robot extends TimedRobot {
   public static HatchRelease release;
   public static Winch winch;
   public static Arm arm;
+  public static ResetArmEncoder res;
   public static OI m_oi;
 
   Command m_autonomousCommand;
@@ -57,6 +59,7 @@ public class Robot extends TimedRobot {
     release = new HatchRelease();
     winch = new Winch();
     arm = new Arm();
+    res = new ResetArmEncoder();
     m_oi = new OI();
     m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     SmartDashboard.putData("Auto mode", m_chooser);

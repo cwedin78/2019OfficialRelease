@@ -7,13 +7,11 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class stopHatch extends Command {
-  public Timer stickout;
-  public stopHatch() {
+public class ResetCam extends Command {
+  public ResetCam() {
     requires(Robot.release);
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -22,22 +20,18 @@ public class stopHatch extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    stickout = new Timer();
-    stickout.start();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-
-    Robot.release.thrower.set(0);
+    Robot.release.roter.reset();
   }
-
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return stickout.get() > .4;
+    return false;
   }
 
   // Called once after isFinished returns true

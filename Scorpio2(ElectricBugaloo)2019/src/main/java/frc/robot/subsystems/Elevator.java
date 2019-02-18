@@ -23,7 +23,7 @@ public class Elevator extends Subsystem {
 
 public DigitalInput lowerlimit, upperlimit;
 
-public double value, last_error, controlDZ, bottom, top;
+public double value, last_error, controlDZ, bottom, top, Up, Ud, Dp, Dd;
 
 public CANSparkMax lift;
 
@@ -42,22 +42,35 @@ public CANEncoder liftencoder;
     
     controlDZ = 0.3;
     bottom = -0.5;
-    top = 93;
+    top = 85.5;
+
+    Up = 0.06;
+    Ud = 0.015;
+
+    Dp = 0.01;
+    Ud = 0.009;
   }
 
 
   /**
  * This is a manual pid loop where you can set the P and D values
- * @param kP (the coefficients for the proportional part of PID)
- * @param kD (the coefficients for the derivative part of PID)
+ * @param uP (the coefficients for the proportional part of PID) (when error > 0)
+ * @param uD (the coefficients for the derivative part of PID) (when error > 0)
+ * @param uP (the coefficients for the proportional part of PID) (when error < 0)
+ * @param uD (the coefficients for the derivative part of PID) (when error < 0)
  * @param error (the source of error for the PID loop)
  * 
  */
-public double PIDSpeed(double kP, double kD, double error){
+public double PIDSpeed(double uP, double uD, double dP, double dD, double error){
 
+if (error > 0){
+    value = (uP * error) + (uD * (error - last_error) / 0.05);
 
-  value = (kP * error) + (kD * (error - last_error) / 0.05);
+}
+else{
+  value = (dP * error) + (dD * (error - last_error) / 0.05);
 
+}
   last_error = error;
 
   if (value > 1){

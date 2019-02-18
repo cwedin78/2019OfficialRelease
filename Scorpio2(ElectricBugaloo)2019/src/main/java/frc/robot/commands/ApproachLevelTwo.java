@@ -12,7 +12,7 @@ import frc.robot.Robot;
 
 public class ApproachLevelTwo extends Command {
 
-  public double error, kp, kd, setpoint;
+  public double error, up, dp, ud, dd, setpoint;
   public ApproachLevelTwo() {
     requires(Robot.lift);
     // Use requires() here to declare subsystem dependencies
@@ -23,9 +23,11 @@ public class ApproachLevelTwo extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    up = Robot.lift.Up;
+    ud = Robot.lift.Ud;
 
-    kp = .01;
-    kd = .003;
+    dp = Robot.lift.Dp;
+    dd = Robot.lift.Dd;
 
     setpoint = 46.42; //closest estimate as of now
 
@@ -36,26 +38,29 @@ public class ApproachLevelTwo extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+  double speed;
   error = setpoint - Robot.lift.liftencoder.getPosition();
 
-    double speed = Robot.lift.PIDSpeed(kp, kd, error);
+  speed = Robot.lift.PIDSpeed(up, ud, dp, dd, error);
   
     if(speed > 0){
-      if (Robot.lift.liftencoder.getPosition() > Robot.lift.top || Robot.lift.upperlimit.get()){
+      if (Robot.lift.liftencoder.getPosition() > Robot.lift.top){ //|| Robot.lift.upperlimit.get()){
       Robot.lift.lift.set(0);
       }
       else {
         Robot.lift.lift.set(speed);
       }
     }
-    else {
-      if(Robot.lift.liftencoder.getPosition() < Robot.lift.bottom || Robot.lift.lowerlimit.get()){
+    else if (speed < 0) {
+      if(Robot.lift.liftencoder.getPosition() < Robot.lift.bottom){//{ || Robot.lift.lowerlimit.get()){
         Robot.lift.lift.set(0);
       }
       else {
         Robot.lift.lift.set(speed);
       }
-    } 
+    }
+    else {}
+    
     
   }
 
