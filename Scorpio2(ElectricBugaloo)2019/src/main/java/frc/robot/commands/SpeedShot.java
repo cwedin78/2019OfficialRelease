@@ -25,9 +25,9 @@ public class SpeedShot extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    setpoint = 155;
+    setpoint = 152;
 
-    kp = 0.06;
+    kp = 0.05;
     kd = 0.02;
     osctime = new Timer();
     osctime.start();
@@ -40,7 +40,7 @@ public class SpeedShot extends Command {
 
     Robot.release.thrower.set(Robot.release.PIDSpeed(kp, kd, error));
   
-    if(Math.abs(error) > 2){
+    if(Math.abs(error) > 5){
       osctime.reset();
     }
     else{
@@ -51,7 +51,7 @@ public class SpeedShot extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-  return osctime.get() > 0.3;
+  return osctime.get() > 0.4;
     //  return Robot.release.roter.get() > 150;
   }
 

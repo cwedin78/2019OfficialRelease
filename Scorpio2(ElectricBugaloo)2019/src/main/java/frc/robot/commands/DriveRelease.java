@@ -19,8 +19,7 @@ public class DriveRelease extends CommandGroup {
     requires(Robot.release);
 
     addSequential(new SpeedShot());
-    addParallel(new stopHatch());
-    addSequential(new RunAway());
+    addParallel(new RunAway());
     addSequential(new EjectHatch());
     
     // Add Commands here:

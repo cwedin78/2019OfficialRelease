@@ -34,9 +34,9 @@ public class EjectHatch extends Command {
     resetspeed = .05;
     endhigh = 70;
     endrecovery = 140;
-    stopticks = 216;
+    stopticks = 214;
 
-    kp =  0.02;
+    kp =  0.025;
     kd = 0.003;
   }
 
@@ -69,7 +69,7 @@ public class EjectHatch extends Command {
   @Override
   protected void end() {
     Robot.release.thrower.set(0);
-   // Robot.release.roter.reset();
+    Robot.release.roter.reset();
   }
 
   // Called when another command which requires one or more of the same
