@@ -34,7 +34,7 @@ public class EjectHatch extends Command {
     resetspeed = .05;
     endhigh = 70;
     endrecovery = 140;
-    stopticks = 214;
+    stopticks = 230;
 
     kp =  0.025;
     kd = 0.003;

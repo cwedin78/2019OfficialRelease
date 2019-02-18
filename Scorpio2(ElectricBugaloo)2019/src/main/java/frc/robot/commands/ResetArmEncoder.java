@@ -33,7 +33,7 @@ public class ResetArmEncoder extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return !Robot.m_oi.operator.getRawButton(8) && Math.abs(Robot.m_oi.operator.getY()) > 0.3;
+    return !Robot.m_oi.driver.getRawButton(8) && Math.abs(Robot.m_oi.operator.getY()) > 0.3;
   }
 
   // Called once after isFinished returns true
