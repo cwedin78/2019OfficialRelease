@@ -29,7 +29,7 @@ public class ApproachLevelTwo extends Command {
     dp = Robot.lift.Dp;
     dd = Robot.lift.Dd;
 
-    setpoint = 46.42; //closest estimate as of now
+    setpoint = 59.5;
 
 
 
