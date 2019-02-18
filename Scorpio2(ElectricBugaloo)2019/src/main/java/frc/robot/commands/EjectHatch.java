@@ -7,12 +7,15 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class EjectHatch extends Command {
 
   public double highspeed, recoveryspeed, resetspeed, endhigh, endrecovery, stopticks, kp, kd, error;
+
+  public Timer backed;
   
   public EjectHatch() {
     requires(Robot.release);
@@ -23,12 +26,15 @@ public class EjectHatch extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    backed = new Timer();
+    backed.start();
+
     highspeed = 1;
     recoveryspeed = .2;
     resetspeed = .05;
     endhigh = 70;
     endrecovery = 140;
-    stopticks = 214;
+    stopticks = 216;
 
     kp =  0.02;
     kd = 0.003;
@@ -37,18 +43,26 @@ public class EjectHatch extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-
+    
     error = stopticks - Robot.release.roter.get();
 
-    //Robot.release.thrower.set(Robot.release.ejectspeed(Robot.release.roter, highspeed, recoveryspeed, resetspeed, endhigh, endrecovery, stopticks));
+
     Robot.release.thrower.set(Robot.release.PIDSpeed(kp, kd, error));
+
+    if(Math.abs(error) > 2){
+      backed.reset();
+    }
+    else{
+      
+    }
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
 
-    return Math.abs(error) < 2;
+    return backed.get() > 0.4;
     }
 
   // Called once after isFinished returns true
