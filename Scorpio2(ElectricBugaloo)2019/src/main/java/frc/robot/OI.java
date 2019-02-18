@@ -91,7 +91,6 @@ public OI(){
     o6.whenPressed(new GetToLevel3());
     o7.whileHeld(new OperatorLift());
     o7.whenReleased(new StopLift());
-    o7.whileHeld(new ResetCam());
     o9.whenPressed(new StraightArm());
     o10.whenPressed(new GroundCargo());
     o11.whenPressed(new CargoCargo());
