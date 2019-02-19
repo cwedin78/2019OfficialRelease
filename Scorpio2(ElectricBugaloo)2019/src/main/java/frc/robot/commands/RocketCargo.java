@@ -27,7 +27,7 @@ public class RocketCargo extends Command {
     kp = Robot.arm.anglep;
     kd = Robot.arm.angled;
 
-    setpoint = 485;
+    setpoint = 460;
   }
 
   // Called repeatedly when this Command is scheduled to run
