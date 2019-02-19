@@ -39,7 +39,7 @@ public Winch() {
 
 
   winchMotor = new WPI_TalonSRX(10);
-  winchMotor.setInverted(false);
+  winchMotor.setInverted(true);
   winchEncoder = new Encoder(4, 5, false);
 
   highlimit = 11612; 
@@ -63,7 +63,7 @@ public Winch() {
 public double PIDSpeed(double kP, double kD, double error, boolean Isinverted){
 
   value = (kP * error) + (kD * (error - last_error) / 0.05);
-  if(Isinverted){
+  if(!Isinverted){
     value = value;
   }
   else {
@@ -100,6 +100,7 @@ input = controllertype.getThrottle();
 if(inverted){
   input = input * -1;
 }
+else{}
 
 //DZ
 

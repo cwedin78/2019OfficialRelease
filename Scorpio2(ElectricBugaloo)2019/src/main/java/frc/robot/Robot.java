@@ -138,7 +138,6 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("stalltime", Robot.arm.spiked.get());
     SmartDashboard.putNumber("lift speed", Robot.lift.lift.get());
     SmartDashboard.putNumber("lift position", Robot.lift.liftencoder.getPosition());
-    SmartDashboard.putNumber("Roll", Robot.winch.navx.getRoll());
     SmartDashboard.putNumber("Pitch", Robot.winch.navx.getPitch());
     SmartDashboard.putNumber("winch encoder", Robot.winch.winchEncoder.get());
     SmartDashboard.putNumber("armEncoder", Robot.arm.armEncoder.get());
@@ -155,7 +154,6 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopInit() {
 
-    Robot.winch.navx.reset();
     // This makes sure that the autonomous stops running when
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
@@ -175,7 +173,6 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("stalltime", Robot.arm.spiked.get());
     SmartDashboard.putNumber("lift speed", Robot.lift.lift.get());
     SmartDashboard.putNumber("lift position", Robot.lift.liftencoder.getPosition());
-    SmartDashboard.putNumber("Roll", Robot.winch.navx.getRoll());
     SmartDashboard.putNumber("Pitch", Robot.winch.navx.getPitch());
     SmartDashboard.putNumber("winch encoder", Robot.winch.winchEncoder.get());
     SmartDashboard.putNumber("armEncoder", Robot.arm.armEncoder.get());
