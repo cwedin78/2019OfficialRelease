@@ -15,11 +15,14 @@ public class DriverInput extends Command {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.drivetrain);
+    requires(Robot.limelight);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    Robot.limelight.SetVisionProcessingMode(1, 1);
+
   }
 
   // Called repeatedly when this Command is scheduled to run

@@ -25,7 +25,7 @@ public class RocketStart extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    setpoint = 136;
+    setpoint = 135;
 
     kp = 0.05;
     kd = 0.02;

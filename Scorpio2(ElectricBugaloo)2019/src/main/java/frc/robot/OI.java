@@ -87,23 +87,24 @@ public OI(){
 
     o1.whenPressed(new leaveStation());
     o2.whenPressed(new ApproachLevelOne());
-    o4.whenPressed(new ApproachLevelTwo());
-    o6.whenPressed(new GetToLevel3());
+    o4.whenPressed(new CargoCargo());
+    o6.whenPressed(new RocketCargo());
     o7.whileHeld(new OperatorLift());
     o7.whenReleased(new StopLift());
     
     o9.whenPressed(new StraightArm());
     o10.whenPressed(new GroundCargo());
-    o11.whenPressed(new CargoCargo());
-    o12.whenPressed(new RocketCargo());    
+    o11.whenPressed(new ApproachLevelTwo());
+    o12.whenPressed(new GetToLevel3());    
 
-  //  d2.whileHeld(new CenterTarget());
+   d2.whileHeld(new CenterTarget());
     d3.whileHeld(new ManualWinch());
- // d4.whileHeld(new LevelClimb());
+  d4.whileHeld(new LevelClimb());
     d5.whenPressed(new FullRelease());
     d6.whenPressed(new DriveRelease());
-    d8.whileHeld(new ResetArmEncoder());
     d7.whileHeld(new ResetCam());
+    d8.whileHeld(new ResetArmEncoder()); 
+   
     d11.whenPressed(new ArmZero());
 
   }
