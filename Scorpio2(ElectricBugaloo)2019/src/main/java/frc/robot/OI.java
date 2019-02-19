@@ -45,7 +45,7 @@ public class OI {
 
 public Joystick driver, operator;
 
-public JoystickButton d1, d2, d3, d4, d5, d6, d7, d8, d9, d10, d11, d12, o1, o2, o3, o4, o5, o6, o7, o8, o9, o10, o11, o12;
+public JoystickButton d1, d2, d3, d4, d5, d6, d7, d8, d9, d10, d11, d12, o1, o2, o3, o4, o5, o6, o7, o8, o9, o10, o11, o12, du, dr, dl, dd, ou, ol, or, od;
 
 public static keyboard board;
 
@@ -87,23 +87,24 @@ public OI(){
 
     o1.whenPressed(new leaveStation());
     o2.whenPressed(new ApproachLevelOne());
-    o4.whenPressed(new ApproachLevelTwo());
-    o6.whenPressed(new GetToLevel3());
+    o4.whenPressed(new CargoCargo());
+    o6.whenPressed(new RocketCargo());
     o7.whileHeld(new OperatorLift());
     o7.whenReleased(new StopLift());
-    o7.whileHeld(new ResetCam());
+    
     o9.whenPressed(new StraightArm());
     o10.whenPressed(new GroundCargo());
-    o11.whenPressed(new CargoCargo());
-    o12.whenPressed(new RocketCargo());    
+    o11.whenPressed(new ApproachLevelTwo());
+    o12.whenPressed(new GetToLevel3());    
 
-  //  d2.whileHeld(new CenterTarget());
+    d2.whileHeld(new CenterTarget());
     d3.whileHeld(new ManualWinch());
     d4.whileHeld(new LevelClimb());
- // d4.whileHeld(new LevelClimb());
     d5.whenPressed(new FullRelease());
     d6.whenPressed(new DriveRelease());
-    d8.whileHeld(new ResetArmEncoder());
+    d7.whileHeld(new ResetCam());
+    d8.whileHeld(new ResetArmEncoder()); 
+   
     d11.whenPressed(new ArmZero());
 
   }

@@ -39,6 +39,7 @@ public Winch() {
 
 
   winchMotor = new WPI_TalonSRX(10);
+  winchMotor.setInverted(false);
   winchEncoder = new Encoder(4, 5, false);
 
   highlimit = 11612; 
@@ -59,9 +60,15 @@ public Winch() {
  * @param error (the source of error for the PID loop)
  * 
  */
-public double PIDSpeed(double kP, double kD, double error){
+public double PIDSpeed(double kP, double kD, double error, boolean Isinverted){
 
   value = (kP * error) + (kD * (error - last_error) / 0.05);
+  if(Isinverted){
+    value = value;
+  }
+  else {
+    value = value * -1;
+  }
 
   last_error = error;
 

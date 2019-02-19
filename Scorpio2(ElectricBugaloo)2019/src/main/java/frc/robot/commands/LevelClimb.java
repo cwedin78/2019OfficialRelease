@@ -23,7 +23,7 @@ public class LevelClimb extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    kP = 0.1;
+    kP = 0.7;
     kD = 0.02;
  
   
@@ -32,9 +32,27 @@ public class LevelClimb extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double speed = Robot.winch.PIDSpeed(kP, kD, Robot.winch.navx.getRoll());
+    double speed = Robot.winch.PIDSpeed(kP, kD, Robot.winch.navx.getRoll() * -1, true);
 
     Robot.arm.armMotor.set(Robot.arm.CalculateControllerValue(0.3, Robot.m_oi.operator, true, "Y"));
+
+    if(speed < 0){
+      if(Robot.winch.winchEncoder.get() < Robot.winch.lowlimit){
+        Robot.winch.winchMotor.set(0);
+      }
+      else {
+        Robot.winch.winchMotor.set(speed);
+      }
+      
+    }
+    else{
+      if(Robot.winch.winchEncoder.get() > Robot.winch.highlimit){
+        Robot.winch.winchMotor.set(0);
+      }
+      else {
+        Robot.winch.winchMotor.set(speed);
+      }
+    }
 
     Robot.winch.winchMotor.set(speed);
     }
@@ -43,8 +61,8 @@ public class LevelClimb extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return Robot.winch.winchEncoder.get() <= Robot.winch.lowlimit && Robot.winch.PIDSpeed(kP, kD, Robot.winch.navx.getRoll()) < 0 || Robot.winch.winchEncoder.get() >= Robot.winch.highlimit && Robot.winch.PIDSpeed(kP, kD, Robot.winch.navx.getRoll()) > 0;
-  }
+    return !Robot.m_oi.driver.getRawButton(4);
+    }
 
   // Called once after isFinished returns true
   @Override

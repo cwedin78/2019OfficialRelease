@@ -7,50 +7,64 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 
-public class DriverInput extends Command {
-  public DriverInput() {
+public class RocketStart extends Command {
+  public Timer osctime;
+
+  public double kp, kd, setpoint, error;
+  public RocketStart() {
+    requires(Robot.release);
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.drivetrain);
-    requires(Robot.limelight);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.limelight.SetVisionProcessingMode(1, 1);
+    setpoint = 135;
 
+    kp = 0.05;
+    kd = 0.02;
+    osctime = new Timer();
+    osctime.start();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double forward;
-    double twist;
+    error = setpoint - Robot.release.roter.get();
 
-    forward = Robot.drivetrain.CalculateControllerValue(.3, Robot.m_oi.driver, true, "Y");
-    twist = Robot.drivetrain.CalculateControllerValue(.3, Robot.m_oi.driver, false, "Z");
+    Robot.release.thrower.set(Robot.release.PIDSpeed(kp, kd, error));
+  
+    if(Math.abs(error) > 5){
+      osctime.reset();
+    }
+    else{
 
-    Robot.drivetrain.inputdrive(forward, twist);
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+  return osctime.get() > 0.4;
+    //  return Robot.release.roter.get() > 150;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.release.thrower.set(0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    Robot.release.thrower.set(0);
   }
 }

@@ -26,22 +26,25 @@ public class ResetCam extends Command {
   @Override
   protected void execute() {
     Robot.release.roter.reset();
+    Robot.release.thrower.set(-.1);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return !Robot.m_oi.driver.getRawButton(7);
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.release.thrower.set(0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    Robot.release.thrower.set(0);
   }
 }

@@ -37,7 +37,7 @@ public class LimeLight extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    setDefaultCommand(new Lime());
+    //setDefaultCommand(new Lime());
     // setDefaultCommand(new MySpecialCommand());
   }
 }

@@ -18,8 +18,8 @@ public class FullRelease extends CommandGroup {
     
     requires(Robot.release);
 
-    addSequential(new SpeedShot());
-    addSequential(new EjectHatch());
+    addSequential(new RocketStart());
+    addSequential(new RocketFinish());
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());

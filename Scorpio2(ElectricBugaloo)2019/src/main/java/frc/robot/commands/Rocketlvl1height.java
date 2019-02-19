@@ -10,31 +10,58 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class DriverInput extends Command {
-  public DriverInput() {
+public class Rocketlvl1height extends Command {
+
+  public double error, up, ud, dp, dd, setpoint;
+
+  public Rocketlvl1height() {
+    requires(Robot.lift);
+
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.drivetrain);
-    requires(Robot.limelight);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.limelight.SetVisionProcessingMode(1, 1);
+    up = Robot.lift.Up;
+    ud = Robot.lift.Ud;
+
+    dp = Robot.lift.Dp;
+    dd = Robot.lift.Dd;
+
+    setpoint = 12;
+
 
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double forward;
-    double twist;
+    double speed;
+    error = setpoint - Robot.lift.liftencoder.getPosition();
 
-    forward = Robot.drivetrain.CalculateControllerValue(.3, Robot.m_oi.driver, true, "Y");
-    twist = Robot.drivetrain.CalculateControllerValue(.3, Robot.m_oi.driver, false, "Z");
-
-    Robot.drivetrain.inputdrive(forward, twist);
+    speed = Robot.lift.PIDSpeed(up, ud, dp, dd, error);
+    
+  if(speed > 0){
+    if (Robot.lift.liftencoder.getPosition() > Robot.lift.top){ //|| Robot.lift.upperlimit.get()){
+    Robot.lift.lift.set(0);
+    }
+    else {
+      Robot.lift.lift.set(speed);
+    }
+  }
+  else if (speed < 0) {
+    if(Robot.lift.liftencoder.getPosition() < Robot.lift.bottom){//{ || Robot.lift.lowerlimit.get()){
+      Robot.lift.lift.set(0);
+    }
+    else {
+      Robot.lift.lift.set(speed);
+    }
+  }
+  else {}
+  
+  
   }
 
   // Make this return true when this Command no longer needs to run execute()
