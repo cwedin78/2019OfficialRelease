@@ -99,7 +99,6 @@ public OI(){
 
     d2.whileHeld(new CenterTarget());
     d3.whileHeld(new ManualWinch());
-    d4.whileHeld(new LevelClimb());
     d5.whenPressed(new FullRelease());
     d6.whenPressed(new DriveRelease());
     d7.whileHeld(new ResetCam());
