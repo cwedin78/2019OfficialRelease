@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
@@ -17,7 +18,7 @@ import frc.robot.commands.Lime;
  * Add your docs here.
  */
 public class LimeLight extends Subsystem {
-  public NetworkTable camera;
+  public NetworkTable camera, ubs;
   public NetworkTableEntry tx;
   public NetworkTableEntry cameraMode;
   public NetworkTableEntry ledMode; 
@@ -26,7 +27,9 @@ public class LimeLight extends Subsystem {
     camera = NetworkTableInstance.getDefault().getTable("limelight");
     tx = camera.getEntry("tx");
     cameraMode = camera.getEntry("cameraMode");
-    ledMode = camera.getEntry("ledMode");   
+    ledMode = camera.getEntry("ledMode");  
+    
+
   }
   
   public void SetVisionProcessingMode(int color, int light) {
