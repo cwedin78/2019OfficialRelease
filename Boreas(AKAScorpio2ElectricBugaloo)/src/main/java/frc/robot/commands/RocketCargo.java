@@ -67,12 +67,7 @@ public class RocketCargo extends Command {
     else{
       Robot.arm.intake.set(0);
     }
-    if(Robot.m_oi.operator.getRawButton(8)){
-      Robot.arm.intake.set(1);
-    }
-    else {
-      Robot.arm.intake.set(0);
-    }
+ 
     
   }
 
