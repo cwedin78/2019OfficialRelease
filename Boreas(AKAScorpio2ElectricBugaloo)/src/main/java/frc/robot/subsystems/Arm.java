@@ -29,7 +29,7 @@ public class Arm extends Subsystem {
   
   public DigitalInput limitArmOne, limitArmTwo;
 
-  public double value, last_error, stallvalue, stalltime, botlimit, groundlimit, anglep, angled, suck, shoot;
+  public double value, last_error, stallvalue, stalltime, botlimit, groundlimit, anglep, angled, suck, maximum, shoot;
 
 
   public Arm() {
@@ -53,7 +53,8 @@ public class Arm extends Subsystem {
   anglep = 0.007;
   angled = 0.001;
 
-  suck = 0.45;
+  suck = 0.55;
+
   shoot = -1;
   }
 

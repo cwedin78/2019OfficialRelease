@@ -59,6 +59,13 @@ public StraightArm() {
     Robot.arm.intake.set(0);
   }  
 
+  if(Robot.m_oi.operator.getRawButton(8)){
+    Robot.arm.intake.set(1);
+  }
+  else {
+    Robot.arm.intake.set(0);
+  }
+
   
   if(armspeed < 0 && Robot.arm.armEncoder.get() <= Robot.arm.botlimit){
     Robot.arm.armMotor.set(0);
