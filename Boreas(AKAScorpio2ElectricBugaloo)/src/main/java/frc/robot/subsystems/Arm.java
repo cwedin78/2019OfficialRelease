@@ -39,6 +39,7 @@ public class Arm extends Subsystem {
   armMotor.setInverted(true);
 
   intake = new WPI_TalonSRX(7);
+  intake.setInverted(true);
   armEncoder = new Encoder(0, 1, false);
 
   stallvalue = 40;
