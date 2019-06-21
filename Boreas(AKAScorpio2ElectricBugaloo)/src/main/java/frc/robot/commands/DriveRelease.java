@@ -26,8 +26,10 @@ public class DriveRelease extends CommandGroup {
     addSequential(new SpeedShot());
     addParallel(new RunAway());
     addSequential(new SpeedShot2());
-    addParallel(new EjectHatch());
-    addSequential(new DriverInput());
+    addParallel(new TempDrive());
+    addSequential(new SpeedShot3());
+    addParallel(new TempDrive());
+    addSequential(new EjectHatch());
     
     // Add Commands here:
     // e.g. addSequential(new Command1());

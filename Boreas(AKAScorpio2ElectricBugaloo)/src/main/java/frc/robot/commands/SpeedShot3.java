@@ -15,11 +15,11 @@ import frc.robot.Robot;
  * @author Nikolai (AdmiralTyhard)
  */
 
-public class SpeedShot2 extends Command {
-//  public Timer osctime;
+public class SpeedShot3 extends Command {
+  public Timer osctime;
 
   public double kp, kd, setpoint, error;
-  public SpeedShot2() {
+  public SpeedShot3() {
     requires(Robot.release);
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -32,8 +32,8 @@ public class SpeedShot2 extends Command {
 
     kp = 0.05;
     kd = 0.02;
- //   osctime = new Timer();
- //   osctime.start();
+    osctime = new Timer();
+    osctime.start();
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -42,14 +42,19 @@ public class SpeedShot2 extends Command {
     error = setpoint - Robot.release.roter.get();
 
     Robot.release.thrower.set(Robot.release.PIDSpeed(kp, kd, error));
-
   
+    if(Math.abs(error) > 5){
+      osctime.reset();
+    }
+    else{
+
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-  return Robot.release.roter.get() >= setpoint;
+  return osctime.get() > 0.25;
     //  return Robot.release.roter.get() > 150;
   }
 

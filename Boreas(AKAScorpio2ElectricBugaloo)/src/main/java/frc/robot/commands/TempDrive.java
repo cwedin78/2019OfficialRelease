@@ -9,60 +9,57 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
+
 /**
  * @author Nikolai (AdmiralTyhard)
  */
 
-public class SpeedShot2 extends Command {
-//  public Timer osctime;
-
-  public double kp, kd, setpoint, error;
-  public SpeedShot2() {
-    requires(Robot.release);
+public class TempDrive extends Command {
+  public Timer timing = new Timer();
+  public TempDrive() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    requires(Robot.drivetrain);
+    requires(Robot.limelight);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    setpoint = 152;
+    timing.start();
+    Robot.limelight.SetVisionProcessingMode(1, 1);
 
-    kp = 0.05;
-    kd = 0.02;
- //   osctime = new Timer();
- //   osctime.start();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    error = setpoint - Robot.release.roter.get();
+    double forward;
+    double twist;
 
-    Robot.release.thrower.set(Robot.release.PIDSpeed(kp, kd, error));
+    forward = Robot.drivetrain.CalculateControllerValue(.3, Robot.m_oi.driver, true, "Y");
+    twist = Robot.drivetrain.CalculateControllerValue(.3, Robot.m_oi.driver, false, "Z");
 
-  
+    Robot.drivetrain.inputdrive(forward, twist);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-  return Robot.release.roter.get() >= setpoint;
-    //  return Robot.release.roter.get() > 150;
+    return timing.get() > 1.5;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.release.thrower.set(0);
+    timing.stop();
+    timing.reset();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Robot.release.thrower.set(0);
   }
 }
