@@ -7,7 +7,11 @@
 
 /**
  * @author Nikolai (AdmiralTryhard)
- */
+ * 
+  brandon is a wee not fun doode with a small wee wee
+  ya I went there 
+  */
+
 package frc.robot;
 
 import java.awt.event.KeyEvent;
@@ -71,7 +75,7 @@ public OI(){
     d10 = new JoystickButton(driver, 10);
     d11 = new JoystickButton(driver, 11);
     d12 = new JoystickButton(driver, 12);
-  
+ 
 
     o1 = new JoystickButton(operator, 1);
     o2 = new JoystickButton(operator, 2);

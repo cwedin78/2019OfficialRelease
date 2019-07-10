@@ -54,9 +54,9 @@ public class Arm extends Subsystem {
   anglep = 0.007;
   angled = 0.001;
 
-  suck = 0.55;
+  suck = -0.55;
 
-  shoot = -1;
+  shoot = 1;
   }
 
 
