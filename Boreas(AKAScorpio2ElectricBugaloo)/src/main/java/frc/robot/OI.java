@@ -89,19 +89,19 @@ public OI(){
 
 
     o1.whenPressed(new leaveStation());
-    o2.whenPressed(new ApproachLevelOne());
-    o4.whileHeld(new CargoCargo());
-    o4.whenReleased(new ManualArm());
-    o6.whileHeld(new RocketCargo());
-    o6.whenReleased(new ManualArm());
+    //o2.whenPressed(new ApproachLevelOne());
+    //o4.whileHeld(new CargoCargo());
+    //o4.whenReleased(new ManualArm());
+    //o6.whileHeld(new RocketCargo());
+    //o6.whenReleased(new ManualArm());
     o7.whileHeld(new OperatorLift());
     o7.whenReleased(new StopLift());
-    o9.whileHeld(new StraightArm());
-    o9.whenReleased(new ManualArm());
-    o10.whileHeld(new GroundCargo());
-    o10.whenReleased(new ManualArm());
-    o11.whenPressed(new ApproachLevelTwo());
-    o12.whenPressed(new GetToLevel3());    
+    //o9.whileHeld(new StraightArm());
+    //o9.whenReleased(new ManualArm());
+    //o10.whileHeld(new GroundCargo());
+    //o10.whenReleased(new ManualArm());
+    //o11.whenPressed(new ApproachLevelTwo());
+    //o12.whenPressed(new GetToLevel3());    
 
     d2.whileHeld(new CenterTarget());
     d3.whileHeld(new ManualWinch());
@@ -110,7 +110,7 @@ public OI(){
     d7.whileHeld(new ResetCam());
     d8.whileHeld(new ResetArmEncoder()); 
     
-    d11.whenPressed(new ArmZero());
+    //d11.whenPressed(new ArmZero());
 
   }
 
