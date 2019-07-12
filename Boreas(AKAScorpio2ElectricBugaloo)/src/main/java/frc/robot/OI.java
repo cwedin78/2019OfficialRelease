@@ -93,7 +93,7 @@ public OI(){
 
 
     o1.whenPressed(new leaveStation());
-    //o2.whenPressed(new ApproachLevelOne());
+    o2.whenPressed(new ApproachLevelOne());
     //o4.whileHeld(new CargoCargo());
     //o4.whenReleased(new ManualArm());
     //o6.whileHeld(new RocketCargo());
@@ -107,7 +107,7 @@ public OI(){
     //o11.whenPressed(new ApproachLevelTwo());
     //o12.whenPressed(new GetToLevel3());    
 
-    d2.whileHeld(new CenterTarget());
+    //d2.whileHeld(new CenterTarget());
     d3.whileHeld(new ManualWinch());
     d5.whenPressed(new FullRelease());
     d6.whenPressed(new DriveRelease());
