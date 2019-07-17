@@ -26,7 +26,7 @@ public class LimeLight extends Subsystem {
   public LimeLight() {
     camera = NetworkTableInstance.getDefault().getTable("limelight");
     tx = camera.getEntry("tx");
-    cameraMode = camera.getEntry("cameraMode");
+    cameraMode = camera.getEntry("camMode");
     ledMode = camera.getEntry("ledMode");  
     
 
